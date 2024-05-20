@@ -1,4 +1,4 @@
-.Login-Page {
+.SignUp-Page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,7 @@
   margin: auto;
 }
 
-.Login-Container {
+.SignUp-Container {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -17,30 +17,32 @@
   margin: auto;
 }
 
-.Login-Title {
+.SignUp-Title {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
   color: #333; /* Title color */
 }
 
-.Login-Form {
+.SignUp-Form {
   display: flex;
   flex-direction: column;
 }
 
 .email-input,
-.password-input {
+.name-input,
+.password-input-wrapper {
   margin-bottom: 15px;
 }
 
 label {
   font-size: 16px;
   margin-bottom: 5px;
+
 }
 
 .InputBox {
-    width: calc(100% - 20px);
+width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -62,8 +64,8 @@ label {
 .submit-button button {
   width: 100%;
   padding: 10px;
-  background-color: #2563eb;
-  color: #fff;
+  background-color: #2563eb; /* Button background color */
+  color: #fff; /* Button text color */
   border: none;
   border-radius: 4px;
   font-size: 16px;
@@ -71,7 +73,7 @@ label {
 }
 
 .submit-button button:hover {
-  background-color: #1d4ed8;
+  background-color: #1d4ed8; /* Hover background color */
 }
 
 .sign-up-link {
@@ -89,12 +91,14 @@ label {
   text-decoration: none;
 }
 
-.sign-up-link a:hover {
-  text-decoration: underline;
-}
+.large-icon {
+    font-size: 3rem;
+  }
 
-.error-message {
-  text-align: center;
-  color: #ff0000;
-  margin-top: 10px;
-}
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
