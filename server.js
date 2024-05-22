@@ -1,0 +1,1 @@
+export const beServer = "http://localhost:4000/api";

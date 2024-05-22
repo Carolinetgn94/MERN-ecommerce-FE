@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import {server} from "../../server";
+import axios from "axios"
 
 function Login() {
+    const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -15,11 +18,26 @@ function Login() {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value, error: "" });
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post(`${server}/user/login-user`,{
+        email,
+        password,
+    }, {withCredentials: true}).then((res)=> {
+        alert("Login Sucess");
+        navigate("/");
+        window.location.reload(true);
+    })
+    .catch((err)=> {
+        alert("Login failed")
+    })
+  }
+
   return (
     <div className="Login-Page">
       <div className="Login-Container">
         <h2 className="Login-Title">Login To Your Account</h2>
-        <form className="Login-Form">
+        <form className="Login-Form" onSubmit={handleSubmit}>
           <div email-input>
             <label>Email </label>
             <input className="InputBox"

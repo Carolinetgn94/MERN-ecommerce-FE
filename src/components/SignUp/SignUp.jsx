@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./SignUp.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import {RxAvatar} from "react-icons/rx";
+import { RxAvatar } from "react-icons/rx";
+import axios from "axios";
+import { beServer } from "../../server";
 
 function SignUp() {
   const [userInfo, setUserInfo] = useState({
@@ -13,24 +15,48 @@ function SignUp() {
   });
   const [visible, setVisible] = useState(false);
 
-  function handleSubmit() {
-    console.log("submit");
-  }
-
   function handleImageUpload(e) {
     const file = e.target.files[0];
-    setUserInfo.avatar(file);
-  } 
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setUserInfo((prevState) => ({ ...prevState, avatar: reader.result}));
+    };
+
+    reader.readAsDataURL(file);
+  }
+  
 
   function handleChange(e) {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value, error: "" });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const newForm = new FormData();
+    newForm.append("file", userInfo.avatar);
+    newForm.append("name", userInfo.name);
+    newForm.append("email", userInfo.email);
+    newForm.append("password", userInfo.password);
+
+  
+    axios
+      .post(`${beServer}/user/create-user`, newForm, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
     <div className="SignUp-Page">
       <div className="SignUp-Container">
         <h2 className="SignUp-Title">Register A Free Account</h2>
-        <form className="SignUp-Form">
+        <form className="SignUp-Form" onSubmit={handleSubmit}>
           <div name-input>
             <label>Full Name </label>
             <input
@@ -74,27 +100,31 @@ function SignUp() {
               <AiOutlineEyeInvisible onClick={() => setVisible(true)} />
             )}
           </div>
-        <div className="avatar-section">
-            <label></label>
-            <span>
-                {
-                userInfo.avatar ?
-                (
-                <img src={URL.createObjectURL(userInfo.avatar)} alt="avatar"/>)
-                : ( 
-                 <RxAvatar className="large-icon"/> 
-                )
-            }
-            </span>
-            <label className="file-input">Upload a Profile Picture</label>
-            <input className="file-upload"
-            type="file"
-            name="avatar"
-            id="file-input"
-            accept=".jpg,.jpeg,.png"
-            onChange={handleImageUpload}
-            ></input>
-        </div>
+
+          <div className="avatar-section">
+            <label className="file-input">
+              <span className="avatar-container">
+                {userInfo.avatar ? (
+                  <img
+                    src={userInfo.avatar}
+                    alt="avatar"
+                    className="avatar-image"
+                  />
+                ) : (
+                  <RxAvatar className="avatar-image" />
+                )}
+              </span>
+              Upload a Profile Picture
+              <input
+                className="file-upload"
+                type="file"
+                name="avatar"
+                id="file-input"
+                accept=".jpg,.jpeg,.png"
+                onChange={handleImageUpload}
+              />
+            </label>
+          </div>
 
           <div className="submit-button">
             <button type="submit">Sign Up</button>
