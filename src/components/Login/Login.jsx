@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import {server} from "../../server";
+import {beServer} from "../../server";
 import axios from "axios"
 
 function Login() {
@@ -20,9 +20,9 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post(`${server}/user/login-user`,{
-        email,
-        password,
+    await axios.post(`${beServer}/user/login-user`,{
+        email: userInfo.email,
+        password: userInfo.password,
     }, {withCredentials: true}).then((res)=> {
         alert("Login Sucess");
         navigate("/");
