@@ -4,6 +4,7 @@ import "./Login.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import {beServer} from "../../server";
 import axios from "axios"
+import { toast } from "react-toastify";
 
 function Login() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Login() {
         email: userInfo.email,
         password: userInfo.password,
     }, {withCredentials: true}).then((res)=> {
-        alert("Login Sucess");
+        toast.success("Login Sucess");
         navigate("/");
         window.location.reload(true);
     })
