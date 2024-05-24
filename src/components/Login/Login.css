@@ -1,0 +1,100 @@
+.Login-Page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6;
+  width: auto;
+  margin: auto;
+}
+
+.Login-Container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: auto;
+}
+
+.Login-Title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Title color */
+}
+
+.Login-Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-input,
+.password-input {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.InputBox {
+    width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-input-wrapper svg {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.submit-button button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button button:hover {
+  background-color: #1d4ed8;
+}
+
+.sign-up-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.sign-up-link h5 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.sign-up-link a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.sign-up-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  text-align: center;
+  color: #ff0000;
+  margin-top: 10px;
+}
