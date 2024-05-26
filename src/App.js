@@ -5,19 +5,12 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
-import { beServer } from "./server";
+import Store from "./redux/store";
+import { loadUser } from "./redux/actions/user.action";
 
 function App() {
   useEffect(() => {
-    axios
-      .get(`${beServer}/user/getuser`, { withCredentials: true })
-      .then((res) => {
-        toast.success(res.data.message);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
+    Store.dispatch(loadUser());
   }, []);
 
   return (
