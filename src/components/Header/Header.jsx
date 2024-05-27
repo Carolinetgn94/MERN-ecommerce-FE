@@ -1,6 +1,7 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 import React, {useState} from "react";
+import NavBar from "../NavBar/NavBar";
 
 function Header() {
   const [searchInput, setSearchInput] = useState("");
@@ -12,6 +13,7 @@ function Header() {
 
   return (
     <div className="header">
+        <div className="header-row">
       <div className="header-logo">
         <Link to="/">
           <h3>image logo</h3>
@@ -33,6 +35,12 @@ function Header() {
             <h3>Become a Seller</h3>
         </Link>
       </div>
+      </div>
+      <div className="navbar">
+        <NavBar />
+
+      </div>
+
     </div>
   );
 }
