@@ -1,0 +1,18 @@
+.Home-Page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .headersection {
+    width: 100%;
+  }
+  
+  .herosection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
