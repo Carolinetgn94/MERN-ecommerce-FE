@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import HeroBanner from "../../components/HeroBanner/HeroBanner";
 import "./HomePage.css"
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 function HomePage() {
   return (
@@ -12,6 +13,10 @@ function HomePage() {
       <div className="herosection">
         <HeroBanner />
       </div>
+      <div className="featuredsection">
+        <ProductCard />
+      </div>
+
     </div>
   );
 }
