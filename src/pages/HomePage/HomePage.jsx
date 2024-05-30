@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import HeroBanner from "../../components/HeroBanner/HeroBanner";
 import "./HomePage.css"
-import ProductCard from "../../components/ProductCard/ProductCard";
+import FeaturedProduct from "../../components/FeaturedProducts/FeaturedProducts";
 
 function HomePage() {
   return (
@@ -14,7 +14,7 @@ function HomePage() {
         <HeroBanner />
       </div>
       <div className="featuredsection">
-        <ProductCard />
+        <FeaturedProduct />
       </div>
 
     </div>

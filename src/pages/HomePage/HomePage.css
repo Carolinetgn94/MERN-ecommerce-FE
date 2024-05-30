@@ -17,3 +17,10 @@
     margin-top: 150px;
 
 }
+
+.featuredsection {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

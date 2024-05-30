@@ -1,0 +1,18 @@
+.featuredSection {
+    width: 100%;
+    margin: 10px auto;
+    margin-top: -20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .featuredtitle {
+    margin-bottom: 20px;
+  }
+  
+  .productSection {
+    display: flex;
+    flex-wrap: wrap;
+  }

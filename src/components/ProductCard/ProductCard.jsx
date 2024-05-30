@@ -1,62 +1,78 @@
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiFillHeart,
+  AiOutlineEye,
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
+import ProductDetails from "../ProductDetails/ProductDetails";
 
-function ProductCard() {
+function ProductCard({ data }) {
   const [click, setClick] = useState(false);
+  const [view, setView] = useState(false);
 
   function addToCartHandler() {
-    console.log('added to cart');
+    console.log("added to cart");
   }
 
   return (
     <div className="productCardContainer">
       <div className="productImage">
-        <Link to="/product/${product.title}">
-          <img
-            src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-          />
+        <Link to={`/product/${data.id}`}>
+          <img src={data.image_Url[0].url} alt="" />
         </Link>
       </div>
       <div className="shopName">
         <Link to="/">
-          <h5>Apple Store</h5>
+          <h5>{data.shop.name}</h5>
         </Link>
       </div>
       <div className="productName">
-        <h4>Apple Super Camera</h4>
+        <h4>
+          {data.name.length > 25 ? data.name.slice(0, 25) + "..." : data.name}
+        </h4>
       </div>
       <div className="productPrice">
-        <h4>$1299</h4>
+        <h4>$ {data.price}</h4>
       </div>
-      <div className="favIcon">
-        {click ? (
-          <AiFillHeart
+      <div className="iconsSection">
+        <div className="favIcon">
+          {click ? (
+            <AiFillHeart
+              size={22}
+              onClick={() => setClick(!click)}
+              color={click ? "red" : "#333"}
+              title="Remove from wishlist"
+            />
+          ) : (
+            <AiOutlineHeart
+              size={22}
+              onClick={() => setClick(!click)}
+              color={click ? "red" : "#333"}
+              title="Add to wishlist"
+            />
+          )}
+        </div>
+        <div className="viewIcon">
+          <AiOutlineEye
             size={22}
-            onClick={() => setClick(!click)}
-            color={click ? "red" : "#333"}
-            title="Remove from wishlist"
+            onClick={() => setView(!view)}
+            color="#333"
+            title="Quick View"
           />
-        ) : (
-          <AiOutlineHeart
-            size={22}
-            onClick={() => setClick(!click)}
-            color={click ? "red" : "#333"}
-            title="Add to wishlist"
-          />
-        )}
-      </div>
-      <div className="cartIcon">
-            <AiOutlineShoppingCart
+          {view ? <ProductDetails setView={setView} /> : null}
+        </div>
+        <div className="cartIcon">
+          <AiOutlineShoppingCart
             size={25}
             onClick={addToCartHandler}
             color="#444"
             title="Add to cart"
-            />
+          />
+        </div>
       </div>
-
     </div>
   );
 }
