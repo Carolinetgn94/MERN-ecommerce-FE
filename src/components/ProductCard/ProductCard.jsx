@@ -20,7 +20,7 @@ function ProductCard({ data }) {
   return (
     <div className="productCardContainer">
       <div className="productImage">
-        <Link to={`/product/${data.id}`}>
+        <Link to={`/product/${data.name}`}>
           <img src={data.image_Url[0].url} alt="" />
         </Link>
       </div>
@@ -62,7 +62,7 @@ function ProductCard({ data }) {
             color="#333"
             title="Quick View"
           />
-          {view ? <ProductDetails setView={setView} /> : null}
+         
         </div>
         <div className="cartIcon">
           <AiOutlineShoppingCart
@@ -72,7 +72,8 @@ function ProductCard({ data }) {
             title="Add to cart"
           />
         </div>
-      </div>
+      </div> 
+      {view ? <ProductDetails setView={setView} data={data}/> : null}
     </div>
   );
 }
