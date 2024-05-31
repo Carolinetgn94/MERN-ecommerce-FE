@@ -16,6 +16,12 @@
   transition: background-color 0.3s ease;
 }
 
+.profileName {
+  color: #fff;
+ margin-bottom: -0.5px;
+}
+
+
 .nav-items a:hover {
     color: #555;
 }

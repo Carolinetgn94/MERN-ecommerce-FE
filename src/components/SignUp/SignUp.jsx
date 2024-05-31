@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { beServer } from "../../server";
 
+
 function SignUp() {
+  
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -14,16 +17,20 @@ function SignUp() {
     avatar: "",
   });
   const [visible, setVisible] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState(null);
+
 
   function handleImageUpload(e) {
     const file = e.target.files[0];
-    const reader = new FileReader();
+    setUserInfo((prevState) => ({ ...prevState, avatar: file }));
+    setAvatarPreview(URL.createObjectURL(file));
+    // const reader = new FileReader();
 
-    reader.onload = () => {
-      setUserInfo((prevState) => ({ ...prevState, avatar: reader.result}));
-    };
+    // reader.onload = () => {
+    //   setUserInfo((prevState) => ({ ...prevState, avatar: reader.result}));
+    // };
 
-    reader.readAsDataURL(file);
+    // reader.readAsDataURL(file);
   }
   
 
@@ -45,6 +52,9 @@ function SignUp() {
     axios
       .post(`${beServer}/user/create-user`, newForm, config)
       .then((res) => {
+        if(res.data.success === true) {
+          navigate("/");
+        }
         console.log(res);
       })
       .catch((err) => {
@@ -104,9 +114,9 @@ function SignUp() {
           <div className="avatar-section">
             <label className="file-input">
               <span className="avatar-container">
-                {userInfo.avatar ? (
+                {avatarPreview ? (
                   <img
-                    src={userInfo.avatar}
+                    src={avatarPreview}
                     alt="avatar"
                     className="avatar-image"
                   />

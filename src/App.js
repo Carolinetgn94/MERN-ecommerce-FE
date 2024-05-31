@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store";
 import { loadUser } from "./redux/actions/user.action";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
     </div>
