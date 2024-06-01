@@ -1,0 +1,132 @@
+.cartContainer {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 45%;
+  height: 75vh;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  border-left: 1px solid #ddd;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 3%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.cartItemsQty {
+  font-weight: bold;
+  text-align: left;
+  display:flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.cartItemsQty h5 {
+  margin-left:15px;
+  font-size: 1.2rem;
+}
+
+.cartItemsSection {
+  margin-top: -30px;
+}
+
+.checkout {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.checkout button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.checkout button:hover {
+  background-color: #444;
+}
+
+.cartItemCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.incrementButton,
+.itemQty,
+.decrementButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.incrementButton:hover,
+.decrementButton:hover {
+  background-color: #eee;
+}
+
+.itemQty {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.cartProductImage {
+  width: 100px;
+  height: 100px;
+  margin: 0 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cartProductImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cartProductDetails {
+  margin-left: 20px;
+}
+
+.cartProductDetails h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cartProductDetails h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.cartTotalPrice {
+  font-weight: bold;
+}
+
+.removeItem {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.removeItem svg {
+  width: 20px;
+  height: 20px;
+}
