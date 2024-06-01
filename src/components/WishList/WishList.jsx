@@ -1,11 +1,11 @@
-import "./Cart.css";
+import "./WishList.css";
 import { RxCross1 } from "react-icons/rx";
 import React, {useState} from "react";
-import { IoBagHandleOutline } from "react-icons/io5";
-import { HiOutlineMinus, HiPlus } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BsCartPlus } from "react-icons/bs";
 
-function Cart ({setOpenCart}) {
+function WishList ({setOpenWishList}) {
     // static data
     const cartData = [
         {
@@ -30,12 +30,12 @@ function Cart ({setOpenCart}) {
             <div className="closeButton">
                 <RxCross1 
                     size={25}
-                    onClick={() => setOpenCart(false)}
+                    onClick={() => setOpenWishList(false)}
                 />
             </div>
             <div className="cartItemsQty">
-                <IoBagHandleOutline className="cartIcon" size={25} />
-                <h5>3 Items</h5>
+                <AiOutlineHeart className="cartIcon" size={25} />
+                <h5>Wishlist</h5>
             </div>
             <br />
             <div className="cartItemsSection"> 
@@ -45,28 +45,20 @@ function Cart ({setOpenCart}) {
                     ))
                 }
             </div>
-            <div className="checkout">
-                <Link to="/checkout">
-                <button>Checkout</button>
-                </Link>
-            </div>
+           
         </div>
     )
 }
 
 function CartItemCard({data}) {
     const [value, setValue] = useState(1);
-    const totalPrice = data.price * value;
+
 
 
     return(
         <div className="cartItemCard">
-            <div className="incrementButton" onClick={() => setValue(value + 1)}>
-                <HiPlus size={18}/>
-            </div>
-            <span className="itemQty">{value}</span>
-            <div className="decrementButton" onClick={() => setValue(value === 1 ? 1 : value - 1)}>
-                <HiOutlineMinus size={18}/>
+            <div className="addToCart">
+                <BsCartPlus size={30} title="Add to Cart" />
             </div>
             <div className="cartProductImage">
                 <img 
@@ -76,14 +68,14 @@ function CartItemCard({data}) {
             </div>
             <div className="cartProductDetails">
                 <h1>{data.name}</h1>
-                <h4 className="cartItemPrice">$ {data.price} * {value} </h4>
-                <h4 className="cartTotalPrice">SGD{totalPrice}</h4>
+                <h4 className="cartItemPrice">$ {data.price} </h4>
+              
             </div>
             <div className="removeItem">
-                <RxCross1 />
+                <button>Remove</button>
             </div>
         </div>
     )
 }
 
-export default Cart
+export default WishList;

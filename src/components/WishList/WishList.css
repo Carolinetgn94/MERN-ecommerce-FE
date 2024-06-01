@@ -1,0 +1,28 @@
+.addToCart{
+    margin-left: 50px;
+}
+
+.removeItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .removeItem button {
+    background-color: #e64848;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5%;
+  }
+  
+  .removeItem button:hover {
+    background-color: #cc0000;
+  }

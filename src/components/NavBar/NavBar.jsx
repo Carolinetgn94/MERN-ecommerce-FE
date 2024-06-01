@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import React , {useState} from "react";
 import Cart from "../Cart/Cart";
+import WishList from "../WishList/WishList";
 
 function NavBar() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -22,7 +23,7 @@ function NavBar() {
       <Link to="/faq">
         <h3 className="FAQ-link">FAQ</h3>
       </Link>
-      <div className="wishlist">
+      <div className="wishlist" onClick={() => setOpenWishList(true)}>
         <AiOutlineHeart size={30} />
         <span className="wishcount">1</span>
       </div>
@@ -46,6 +47,9 @@ function NavBar() {
 
             {
                 openCart ? <Cart setOpenCart={setOpenCart} /> : null
+            }
+             {
+                openWishList ? <WishList setOpenWishList={setOpenWishList} /> : null
             }
 
     </div>
