@@ -15,8 +15,6 @@ import { loadUser } from "./redux/actions/user.action";
 
 
 
-
-
 function App() {
   useEffect(() => {
     Store.dispatch(loadUser());

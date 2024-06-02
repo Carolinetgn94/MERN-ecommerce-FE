@@ -1,0 +1,31 @@
+.profileMenuContainer {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .profileMenuContainer > div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .profileMenuContainer > div:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .profileMenuContainer > div span {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+  
+  .profileMenuContainer > div + div {
+    margin-top: 15px;
+  }
+  

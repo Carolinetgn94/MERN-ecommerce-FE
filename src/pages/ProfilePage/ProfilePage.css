@@ -1,0 +1,44 @@
+
+
+.profilePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    margin-top: 150px;
+  }
+  
+  .headerSection {
+    width: 100%;
+  }
+  
+  .profileSection {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+  
+  
+  .profileMenu,
+  .profileInfo {
+    flex: 1;
+  }
+  
+  .profileContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+  }
+  
+
+  @media (max-width: 768px) {
+    .profileContent {
+      flex-direction: column;
+    }
+  }
+  
