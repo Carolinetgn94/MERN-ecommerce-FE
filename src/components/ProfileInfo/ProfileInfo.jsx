@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "./ProfileInfo.css";
 import React, { useState } from "react";
-import { AiOutlineCamera } from "react-icons/ai";
+import { AiOutlineCamera, AiOutlineDelete } from "react-icons/ai";
 
 function ProfileInfo({ active }) {
   const { user } = useSelector((state) => state.user);
@@ -53,11 +53,40 @@ function ProfileInfo({ active }) {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
-              <input required value="Update" type="submit"/>
+              <input required value="Update" type="submit" />
             </form>
           </div>
         </div>
       )}
+
+      {active === 2 && (
+        <div>
+          <Address />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Address() {
+  return (
+    <div className="addressContent">
+      <div className="headerRow">
+        <div className="addressTitle">
+          <h1>My Addresses</h1>
+        </div>
+        <div className="addAddressButton">
+          <button>Add New</button>
+        </div>
+      </div>
+
+      <div className="defaultAddress">
+        <h5>Default Address</h5>
+        <h6>pasir ris st 32</h6>
+        <div>
+          <AiOutlineDelete size={25} />
+        </div>
+      </div>
     </div>
   );
 }

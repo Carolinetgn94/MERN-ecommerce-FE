@@ -1,5 +1,7 @@
 .contentContainer {
     padding: 20px;
+    width: 100%;
+    margin-left: -170px;
   }
   
   .profileSection {
@@ -45,6 +47,7 @@
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
+    justify-content: left;
   }
   
   .profileForm input {
@@ -69,3 +72,67 @@
     background-color: #138496;
   }
   
+  .addressContent {
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: -20px;
+    width: 100%;
+  }
+
+  .headerRow {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .addressTitle {
+    font-size: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .addAddressButton {
+    margin-left: auto;
+  }
+  
+  .addressTitle,
+  .addAddressButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .addAddressButton button {
+    background-color: #17a2b8;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .addAddressButton button:hover {
+    background-color: #138496;
+  }
+  
+  .defaultAddress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .defaultAddress h5,
+  .defaultAddress h6 {
+    margin: 0;
+  }
+  
+  .defaultAddress h5 {
+    font-weight: bold;
+  }
+  
+  .defaultAddress h6 {
+    color: #555;
+  }
