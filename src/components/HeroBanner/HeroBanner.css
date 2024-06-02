@@ -1,6 +1,6 @@
 .banner1 {
     position: relative;
-    min-height: 70vh; /* adjust as needed */
+    min-height: 70vh; 
     width: 100%;
     overflow: hidden;
   }

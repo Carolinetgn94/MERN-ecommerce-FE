@@ -2,15 +2,16 @@ import Header from "../../components/Header/Header";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { productData } from "../../seedData";
 import "./ProductsPage.css";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
+
 
 function ProductsPage() {
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const pData = productData;
-    setData(pData);
-  }, []);
+    useEffect(() => {
+      const pData = productData;
+      setData(pData);
+    }, []);
 
   return (
     <div className="productsPageContainer">

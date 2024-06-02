@@ -1,0 +1,119 @@
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.mainProductImage img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.mainProductName h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.mainDescription p {
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mainProductPrice h4 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.productShopDetails {
+  display: flex;
+}
+
+.cartSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.decrementBtn,
+.incrementBtn {
+  background-color: #41d8a1;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.decrementBtn:hover,
+.incrementBtn:hover {
+  background-color: #00b0b3;
+}
+
+.cartSection span {
+  font-size: 1.5rem;
+  margin: 0 15px;
+  color: #333;
+}
+
+.favIcon {
+  margin-bottom: 20px;
+}
+
+.favIcon svg {
+  cursor: pointer;
+}
+
+.cartButton {
+  display: flex;
+  justify-content: center;
+}
+
+.cartButton button {
+  background-color: rgb(13, 96, 230);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cartButton button:hover {
+  background-color: rgb(19, 49, 221);
+}
+
+.shopButton {
+  background-color: #17a2b8;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  margin-left: 10px;
+  
+}
+
+.shopButton:hover {
+  background-color: #138496;
+}
+
+.shopLink{
+    text-decoration: none;
+}
