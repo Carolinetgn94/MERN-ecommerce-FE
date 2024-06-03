@@ -54,8 +54,8 @@ function App() {
             }
           />
 
-          <Route path="/shop-create" element={<ShopCreatePage />} />
-          
+          <Route path="/create-shop" element={<ShopCreatePage />} />
+
         </Routes>
       </Router>
     </div>

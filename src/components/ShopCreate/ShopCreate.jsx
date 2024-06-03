@@ -5,6 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { beServer } from "../../server";
+import { toast } from "react-toastify";
 
 function ShopCreate() {
   const navigate = useNavigate();
@@ -31,17 +32,24 @@ function ShopCreate() {
     newForm.append("name", name);
     newForm.append("email", email);
     newForm.append("password", password);
+    newForm.append("postalCode", postalCode);
+    newForm.append("address", address);
+    newForm.append("phoneNumber", phoneNumber);
 
     axios
-      .post(`${beServer}/user/create-user`, newForm, config)
+      .post(`${beServer}/shop/create-shop`, newForm, config)
       .then((res) => {
-        if (res.data.success === true) {
-          navigate("/");
-        }
-        console.log(res);
+        toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAddress("");
+        setPostalCode();
+        setAvatar();
+        setPhoneNumber();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        toast.error(error.response.data.message);
       });
   }
 
