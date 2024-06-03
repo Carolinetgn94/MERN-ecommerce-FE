@@ -1,0 +1,18 @@
+.checkoutPage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.headerSection {
+    width: 100%;
+  }
+
+.checkoutSection{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 150px;
+}

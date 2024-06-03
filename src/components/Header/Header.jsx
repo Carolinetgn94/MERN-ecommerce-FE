@@ -31,7 +31,7 @@ function Header() {
       {/*  will try continue search function when have data */}
 
       <div className="seller">
-        <Link to="/seller" className="seller-link">
+        <Link to="/shop-create" className="seller-link">
             <h3>Become a Seller</h3>
         </Link>
       </div>

@@ -8,12 +8,16 @@ import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import FAQPage from "./pages/FAQPage/FAQPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import ShopCreatePage from "./pages/ShopCreatePage/ShopCreatePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store";
 import { loadUser } from "./redux/actions/user.action";
 import ProtectedRoute from "./ProtectedRoute";
 import { useSelector } from "react-redux";
+
+
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -41,6 +45,17 @@ function App() {
               </ProtectedRoute>
             }
           />
+            <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <CheckoutPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/shop-create" element={<ShopCreatePage />} />
+          
         </Routes>
       </Router>
     </div>

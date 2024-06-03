@@ -1,4 +1,4 @@
-import "./SignUp.css";
+import "./ShopCreate.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -6,37 +6,20 @@ import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { beServer } from "../../server";
 
-
-function SignUp() {
-
+function ShopCreate() {
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-  });
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [address, setAddress] = useState("");
+  const [postalCode, setPostalCode] = useState();
+  const [avatar, setAvatar] = useState();
+  const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(null);
-
 
   function handleImageUpload(e) {
     const file = e.target.files[0];
-    setUserInfo((prevState) => ({ ...prevState, avatar: file }));
-    setAvatarPreview(URL.createObjectURL(file));
-     }
-    // const reader = new FileReader();
-
-    // reader.onload = () => {
-    //   setUserInfo((prevState) => ({ ...prevState, avatar: reader.result}));
-    // };
-
-    // reader.readAsDataURL(file);
- 
-  
-
-  function handleChange(e) {
-    setUserInfo({ ...userInfo, [e.target.name]: e.target.value, error: "" });
+    setAvatar(file);
   }
 
   function handleSubmit(e) {
@@ -44,16 +27,15 @@ function SignUp() {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const newForm = new FormData();
-    newForm.append("file", userInfo.avatar);
-    newForm.append("name", userInfo.name);
-    newForm.append("email", userInfo.email);
-    newForm.append("password", userInfo.password);
+    newForm.append("file", avatar);
+    newForm.append("name", name);
+    newForm.append("email", email);
+    newForm.append("password", password);
 
-  
     axios
       .post(`${beServer}/user/create-user`, newForm, config)
       .then((res) => {
-        if(res.data.success === true) {
+        if (res.data.success === true) {
           navigate("/");
         }
         console.log(res);
@@ -66,30 +48,69 @@ function SignUp() {
   return (
     <div className="SignUp-Page">
       <div className="SignUp-Container">
-        <h2 className="SignUp-Title">Register A Free Account</h2>
+        <h2 className="SignUp-Title">Register Seller Account</h2>
         <form className="SignUp-Form" onSubmit={handleSubmit}>
-          <div name-input>
-            <label>Full Name </label>
+          <div className="name-input">
+            <label>Shop Name </label>
             <input
               className="InputBox"
               type="text"
               name="name"
               required
-              value={userInfo.name}
-              onChange={handleChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             ></input>
           </div>
 
-          <div email-input>
-            <label>Email </label>
+          <div className="email-input">
+            <label>Shop Email </label>
             <input
               className="InputBox"
               type="email"
               name="email"
               placeholder="e.g john@email.com"
               required
-              value={userInfo.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+          </div>
+
+          <div className="phone-input">
+            <label>Phone Number </label>
+            <input
+              className="phoneBox"
+              type="number"
+              name="phoneNumber"
+              placeholder="+65"
+              required
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            ></input>
+          </div>
+
+          <div className="address-input">
+            <label>Address </label>
+            <input
+              className="address"
+              type="text"
+              name="address"
+              placeholder=""
+              required
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            ></input>
+          </div>
+
+          <div className="postal-input">
+            <label>Postal Code </label>
+            <input
+              className="postal"
+              type="number"
+              name="postalcode"
+              placeholder="e.g 324524"
+              required
+              value={postalCode}
+              onChange={(e) => setPostalCode(e.target.value)}
             ></input>
           </div>
 
@@ -101,8 +122,8 @@ function SignUp() {
               name="password"
               placeholder="Enter Password "
               required
-              value={userInfo.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             ></input>
 
             {visible ? (
@@ -115,9 +136,9 @@ function SignUp() {
           <div className="avatar-section">
             <label className="file-input">
               <span className="avatar-container">
-                {avatarPreview ? (
+                {avatar ? (
                   <img
-                    src={avatarPreview}
+                    src={URL.createObjectURL(avatar)}
                     alt="avatar"
                     className="avatar-image"
                   />
@@ -125,7 +146,7 @@ function SignUp() {
                   <RxAvatar className="avatar-image" />
                 )}
               </span>
-              Upload a Profile Picture
+              Upload a Shop Profile Picture
               <input
                 className="file-upload"
                 type="file"
@@ -141,8 +162,8 @@ function SignUp() {
             <button type="submit">Sign Up</button>
           </div>
           <div className="sign-up-link">
-            <h5>Already have an account?</h5>
-            <Link to="/login">Login</Link>
+            <h5>Already have a seller's account?</h5>
+            <Link to="/shop-login">Login</Link>
           </div>
         </form>
       </div>
@@ -150,4 +171,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default ShopCreate;
