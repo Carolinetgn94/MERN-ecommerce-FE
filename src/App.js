@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import "./App.css";
 import React, { useEffect } from "react";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -10,20 +15,23 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import ShopCreatePage from "./pages/ShopCreatePage/ShopCreatePage";
+import ShopLoginPage from "./pages/ShopLoginPage/ShopLoginPage";
+import ShopHomePage from "./pages/ShopHomePage/ShopHomePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store";
-import { loadUser } from "./redux/actions/user.action";
+import { loadSeller, loadUser } from "./redux/actions/user.action";
 import ProtectedRoute from "./ProtectedRoute";
+import SellerProtectedRoute from "./SellerProtectedRoute";
 import { useSelector } from "react-redux";
-
-
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.user);
+  const { isSeller } = useSelector((state) => state.seller);
 
   useEffect(() => {
     Store.dispatch(loadUser());
+    Store.dispatch(loadSeller());
   }, []);
 
   return (
@@ -45,7 +53,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-            <Route
+          <Route
             path="/checkout"
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
@@ -55,7 +63,15 @@ function App() {
           />
 
           <Route path="/create-shop" element={<ShopCreatePage />} />
-
+          <Route path="/shop-login" element={<ShopLoginPage />} />
+          <Route
+            path="/shop/:id"
+            element={
+              <SellerProtectedRoute isSeller={isSeller}>
+                <ShopHomePage />
+              </SellerProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>
