@@ -17,17 +17,17 @@ import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import ShopCreatePage from "./pages/ShopCreatePage/ShopCreatePage";
 import ShopLoginPage from "./pages/ShopLoginPage/ShopLoginPage";
 import ShopHomePage from "./pages/ShopHomePage/ShopHomePage";
+import ShopDashboardPage from "./pages/ShopDashboardPage/ShopDashboardPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user.action";
 import ProtectedRoute from "./ProtectedRoute";
 import SellerProtectedRoute from "./SellerProtectedRoute";
-import { useSelector } from "react-redux";
+
+
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.user);
-  const { isSeller } = useSelector((state) => state.seller);
 
   useEffect(() => {
     Store.dispatch(loadUser());
@@ -48,7 +48,7 @@ function App() {
           <Route
             path="/profile"
             element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <ProtectedRoute>
                 <ProfilePage />
               </ProtectedRoute>
             }
@@ -56,7 +56,7 @@ function App() {
           <Route
             path="/checkout"
             element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <ProtectedRoute>
                 <CheckoutPage />
               </ProtectedRoute>
             }
@@ -67,11 +67,22 @@ function App() {
           <Route
             path="/shop/:id"
             element={
-              <SellerProtectedRoute isSeller={isSeller}>
+              <SellerProtectedRoute>
                 <ShopHomePage />
               </SellerProtectedRoute>
             }
           />
+          <Route
+            path="/dashboard"
+            element={
+              <SellerProtectedRoute>
+                <ShopDashboardPage />
+              </SellerProtectedRoute>
+            }
+          />
+
+
+
         </Routes>
       </Router>
     </div>

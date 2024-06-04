@@ -21,6 +21,7 @@ function ShopLogin() {
         password: password,
     }, {withCredentials: true}).then((res)=> {
         toast.success("Login Sucess");
+        navigate("/dashboard");
         window.location.reload(true);
     })
     .catch((err)=> {
