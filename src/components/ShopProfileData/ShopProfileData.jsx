@@ -2,7 +2,7 @@ import "./ShopProfileData.css";
 
 function ShopProfileData() {
     return(
-        <div></div>
+        <div>shop profile data</div>
     )
 }
 
