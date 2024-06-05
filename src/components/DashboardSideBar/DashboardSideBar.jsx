@@ -22,7 +22,7 @@ function DashboardSideBar({active}) {
           <h5>All Products</h5>
         </Link>
       </div>
-      <div className="createProducts">
+      <div className="createProducts" >
         <Link to="/dashboard-create-product">
           <AiOutlineFolderAdd
             size={30}
