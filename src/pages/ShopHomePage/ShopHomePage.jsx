@@ -5,10 +5,10 @@ import "./ShopHomePage.css";
 function ShopHomePage() {
     return(
         <div className="ShopHomePage">
-            <div className="shopInfo">
+            <div className="shopInfoSection">
                 <ShopInfo isOwner={true}/>
             </div>
-            <div className="shopProfile">
+            <div className="shopProfileSection">
                 <ShopProfileData isOwner={true}/>
             </div>
         </div>

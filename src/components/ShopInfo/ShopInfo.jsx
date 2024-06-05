@@ -1,11 +1,53 @@
+import { useSelector } from "react-redux";
 import "./ShopInfo.css";
+import { Link } from "react-router-dom";
 
-function ShopInfo() {
-    return (
-        <div>
-            shopinfo
+function ShopInfo({ isOwner }) {
+  const { seller } = useSelector((state) => state.seller);
+
+  function logoutHandler() {}
+
+  return (
+    <div className="shopInfoContainer">
+      <div className="shopInfoHeader">
+        <div className="shopInfoTitle">
+          <h2>Hello, {seller.name}</h2>
         </div>
-    )
+        <div className="shopInfoDescription">
+          <p>{seller.description}</p>
+        </div>
+      </div>
+      <div className="shopInfoDetails">
+        <div className="shopInfo">
+          <h5>Address</h5>
+          <h4>{seller.address}</h4>
+        </div>
+        <div className="shopInfo">
+          <h5>Phone Number</h5>
+          <h4>{seller.phoneNumber}</h4>
+        </div>
+        <div className="shopInfo">
+          <h5>Total Products</h5>
+          <h4>6</h4>
+        </div>
+        <div className="shopInfo">
+          <h5>Joined On</h5>
+          <h4>{seller.createdAt?.slice(0, 10)}</h4>
+        </div>
+      </div>
+      {isOwner && (
+        <div className="buttons">
+          <Link to="/settings">
+            <button className="editButton">Edit Shop</button>
+          </Link>
+
+          <button className="logOutButton" onClick={logoutHandler}>
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default ShopInfo;
