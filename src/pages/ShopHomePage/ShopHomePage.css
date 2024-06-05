@@ -1,6 +1,7 @@
 .ShopHomePage {
     display: flex;
     height: 100vh;
+    margin-right: 15px;
   }
   
   .shopInfoSection {
