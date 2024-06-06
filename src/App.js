@@ -19,6 +19,7 @@ import ShopLoginPage from "./pages/ShopLoginPage/ShopLoginPage";
 import ShopHomePage from "./pages/ShopHomePage/ShopHomePage";
 import ShopDashboardPage from "./pages/ShopDashboardPage/ShopDashboardPage";
 import ShopCreateProductPage from "./pages/ShopCreateProductPage/ShopCreateProductPage";
+import ShopAllProductsPage from "./pages/ShopAllProductsPage/ShopAllProductsPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store";
@@ -87,6 +88,14 @@ function App() {
             element={
               <SellerProtectedRoute>
                 <ShopCreateProductPage />
+              </SellerProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard-products"
+            element={
+              <SellerProtectedRoute>
+                <ShopAllProductsPage />
               </SellerProtectedRoute>
             }
           />

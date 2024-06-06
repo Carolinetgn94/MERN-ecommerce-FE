@@ -25,3 +25,23 @@ export const createProduct = (newForm) => async (dispatch) => {
         });
     }
 }
+
+export const getAllProductsShop = (id) => async(dispatch) => {
+    try {
+        dispatch({
+            type: "getAllproductsShopRequest",
+        });
+
+        const {data} = await axios.get(`${beServer}/product/get-all-products-shop/${id}`);
+        dispatch({
+            type: "getAllproductsShopSuccess",
+            payload: data.products,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: "getAllproductsShopFail",
+            payload: error.response.data.message,
+        });
+    }
+}
