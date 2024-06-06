@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateProduct.css";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { categoriesData } from "../../seedData";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { createProduct } from "../../redux/actions/product.action";
+import { toast } from "react-toastify";
 
 function CreateProduct() {
   const { seller } = useSelector((state) => state.seller);
+  const { success = false, error = null } = useSelector((state) => state.product);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,6 +19,17 @@ function CreateProduct() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState();
 
+  useEffect(() => {
+    if (error) {
+        toast.error(error);
+      }
+      if (success) {
+        toast.success("Product created successfully!");
+        navigate("/dashboard");
+        window.location.reload();
+      }
+  }, [dispatch, error, success, navigate])
+
   function handleImageChange(e) {
     e.preventDefault();
     let files = Array.from(e.target.files);
@@ -24,6 +38,17 @@ function CreateProduct() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const newForm = new FormData();
+    images.forEach((image) => {
+        newForm.append("images", image);
+    });
+    newForm.append("name", name);
+    newForm.append("description", description);
+    newForm.append("category", category);
+    newForm.append("price", price);
+    newForm.append("shopId", seller._id);
+    dispatch(createProduct(newForm));
   }
 
   return (
