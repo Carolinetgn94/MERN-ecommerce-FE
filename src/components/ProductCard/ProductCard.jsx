@@ -8,8 +8,10 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import ProductDetails from "../ProductDetails/ProductDetails";
+import { useSelector } from "react-redux";
 
 function ProductCard({ data }) {
+
   const [click, setClick] = useState(false);
   const [view, setView] = useState(false);
 

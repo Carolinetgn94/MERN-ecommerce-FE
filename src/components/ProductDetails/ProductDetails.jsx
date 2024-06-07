@@ -2,10 +2,15 @@ import { RxCross1 } from "react-icons/rx";
 import "./ProductDetails.css";
 import React, { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/actions/cart.action";
+import { toast } from "react-toastify";
 
 function ProductDetails({ setView, data }) {
+  const { cart } = useSelector((state) => state.cart);
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
+  const dispatch = useDispatch();
 
   function decrementCount() {
     if (count > 1) {
@@ -15,6 +20,19 @@ function ProductDetails({ setView, data }) {
 
   function incrementCount() {
     setCount(count + 1);
+  }
+
+  function addToCartHandler(id) {
+    
+    const isItemExists = cart && cart.find((i) => i._id === id);
+
+    if (isItemExists) {
+      toast.error("Item already in cart!");
+    } else {
+      const cartData = {...data, qty: count};
+      dispatch(addToCart(cartData));
+      toast.success("Item added to cart!")
+    }
   }
 
   return (
@@ -74,7 +92,7 @@ function ProductDetails({ setView, data }) {
               )}
             </div>
             <div className="popUpcartButton">
-              <button>Add To Cart</button>
+              <button onClick={() => addToCartHandler(data._id)}>Add To Cart</button>
             </div>
           </div>
         </div>
