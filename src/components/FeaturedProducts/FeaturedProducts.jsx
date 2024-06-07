@@ -9,6 +9,8 @@ function FeaturedProduct() {
   const [data, setData] = useState([]);
   const { allProducts } = useSelector((state) => state.products);
 
+  const topProducts = allProducts ? allProducts.slice(0, 4) : [];
+
   // useEffect(() => {
   //   const pData = allproducts;
   //   setData(pData);
@@ -20,13 +22,13 @@ function FeaturedProduct() {
         <h1>Featured Products</h1>
       </div>
       <div className="productSection">
-      {
-            allProducts && allProducts.length !== 0 &&(
-              <>
-               {allProducts && allProducts.map((i, index) => <ProductCard data={i} key={index} />)}
-              </>
-            )
-           }
+      {topProducts && topProducts.length !== 0 && (
+          <>
+            {topProducts.map((product, index) => (
+              <ProductCard data={product} key={index} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

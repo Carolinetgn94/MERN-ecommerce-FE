@@ -25,7 +25,7 @@ function MainProductDetails({ data }) {
       {data ? (
         <div className="productContainer">
           <div className="mainProductImage">
-            <img src={data?.image_Url[0].url} alt="" />
+            {/* <img src={data?.image_Url[0].url} alt="" /> */}
           </div>
           <div className="mainProductName">
             <h1>{data.name}</h1>
@@ -34,17 +34,17 @@ function MainProductDetails({ data }) {
             <p>{data.description}</p>
           </div>
           <div className="productShopDetails">
-            <img
+            {/* <img
               className="shopAvatar"
               src={data.shop.shop_avatar.url}
               alt=""
-            />
+            /> */}
             <h5 className="shopName">{data.shop.name}</h5>
-            <div >
+            {/* <div >
             <Link to="/" className="shopLink">
                 <button className="shopButton">Visit Shop</button>
             </Link>
-            </div>
+            </div> */}
           </div>
           <div className="mainProductPrice">
             <h4>$ {data.price}</h4>

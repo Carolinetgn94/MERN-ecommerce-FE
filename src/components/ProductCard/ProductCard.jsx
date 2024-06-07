@@ -25,14 +25,16 @@ function ProductCard({ data }) {
         </Link>
       </div>
       <div className="shopName">
-        <Link to="/">
+       
           <h5>{data.shop.name}</h5>
-        </Link>
+
       </div>
       <div className="productName">
+      <Link to={`/product/${data.name}`}>
         <h4>
           {data.name.length > 25 ? data.name.slice(0, 25) + "..." : data.name}
         </h4>
+        </Link>
       </div>
       <div className="productPrice">
         <h4>$ {data.price}</h4>
