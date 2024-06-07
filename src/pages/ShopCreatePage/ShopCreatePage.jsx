@@ -10,7 +10,9 @@ function ShopCreatePage() {
 
     useEffect(() => {
         if (isSeller === true) {
+          
             navigate(`/shop/${seller._id}`)
+         
         }
     }, [])
 

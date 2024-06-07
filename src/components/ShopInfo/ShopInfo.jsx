@@ -1,11 +1,23 @@
 import { useSelector } from "react-redux";
 import "./ShopInfo.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { beServer } from "../../server";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function ShopInfo({ isOwner }) {
   const { seller } = useSelector((state) => state.seller);
+  const navigate = useNavigate();
 
-  function logoutHandler() {}
+  async function logoutHandler() {
+    axios.get(`${beServer}/shop/logout`, {
+      withCredentials: true}).then((res) => {
+        toast.success(res.data.message);
+        window.location.reload(true);
+        navigate("/shop-login")
+      });
+    // window.location.reload();
+  }
 
   return (
     <div className="shopInfoContainer">

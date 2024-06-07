@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { productData } from "../../seedData";
 import ProductCard from "../ProductCard/ProductCard";
 import "./ShopProfileData.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductsShop } from "../../redux/actions/product.action";
 
 function ShopProfileData({ isOwner }) {
   const [active, setActive] = useState(1);
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const {id} = useParams();
+
+  useEffect(() => {
+    if (id) {
+       dispatch((getAllProductsShop(id)))
+    }
+   
+  }, [dispatch, id])
 
   return (
     <div className="ShopProfileContainer">
       <div className="shopProfileHeader">
-        <button className="shopProductsButton">My Shop Products</button>
+
+          {/* <h2 className="shopProductsButton">My Shop Products</h2> */}
+  
+      
         {isOwner && (
           <div className="goDashboard">
             <Link to="/dashboard">
@@ -22,13 +37,18 @@ function ShopProfileData({ isOwner }) {
         )}
       </div>
 
-      <br />
-      <div className="shopProductsDisplay">
-        {productData &&
-          productData.map((i, index) => (
-            <ProductCard data={i} key={index} isShop={true} />
-          ))}
+      <br /> 
+      
+
+        <div className="shopProductsDisplay">
+        {products && products.length > 0 && (
+    products.map((product, index) => (
+      <ProductCard data={product} key={index} isShop={true} />
+    ))
+  )}
       </div>
+      
+      
     </div>
   );
 }

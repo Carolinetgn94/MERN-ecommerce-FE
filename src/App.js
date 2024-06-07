@@ -26,6 +26,7 @@ import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user.action";
 import ProtectedRoute from "./ProtectedRoute";
 import SellerProtectedRoute from "./SellerProtectedRoute";
+import { getAllProducts } from "./redux/actions/product.action";
 
 
 
@@ -35,6 +36,7 @@ function App() {
   useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
+    Store.dispatch(getAllProducts());
   }, []);
 
   return (

@@ -9,6 +9,7 @@ const Store = configureStore({
     seller: sellerReducer,
     product: productReducer,
     products: productReducer,
+    allProducts: productReducer,
   },
 });
 

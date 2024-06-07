@@ -23,7 +23,7 @@ function ProductDetails({ setView, data }) {
         <div className="closeButton">
           <RxCross1 size={30} onClick={() => setView(false)} />
           <div className="productSmallDetails">
-            <img
+            {/* <img
               className="productDetailsImage"
               src={data.image_Url[0].url}
               alt=""
@@ -32,7 +32,7 @@ function ProductDetails({ setView, data }) {
               className="shopAvatar"
               src={data.shop.shop_avatar.url}
               alt=""
-            />
+            /> */}
             <h5 className="popUpshopName">{data.shop.name}</h5>
           </div>
           <div className="popUpproductDescription">
