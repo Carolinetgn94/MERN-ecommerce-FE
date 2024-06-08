@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineCamera, AiOutlineDelete } from "react-icons/ai";
 import { updateUserInformation } from "../../redux/actions/user.action";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { beServer } from "../../server";
 
 function ProfileInfo({ active }) {
   const { user, error, successMessage } = useSelector((state) => state.user);
@@ -11,6 +13,7 @@ function ProfileInfo({ active }) {
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
   const [password, setPassword] = useState(user && user.email);
+  const [avatar, setAvatar] = useState(null)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,16 +34,37 @@ function ProfileInfo({ active }) {
     toast.success("Information updated!");
   }
 
+  async function handleImage(e) {
+    const file = e.target.files[0];
+    setAvatar(file);
+
+    const formData = new FormData();
+
+    formData.append("image", e.target.files[0]);
+
+    await axios.put(`${beServer}/user/update-avatar`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true,
+    }).then((response) => {
+      window.location.reload();
+    }).catch((error) => {
+      toast.error(error);
+    });
+  }
+
   return (
     <div className="contentContainer">
       {active === 1 && (
         <div className="profileSection">
           <div className="profilePic">
             <img
-              src={user?.avatar?.url || "placeholder-image-url"}
+              src={user?.avatar || "placeholder-image-url"}
               alt="Profile"
             />
-            <AiOutlineCamera className="cameraIcon" />
+            <input type="file" id="image" className="hidden" onChange={handleImage}/>
+            <AiOutlineCamera htmlFor="image" className="cameraIcon" onClick={() => document.getElementById('image').click()}/>
           </div>
           <div className="profileForm">
             <form onSubmit={handleSubmit}>

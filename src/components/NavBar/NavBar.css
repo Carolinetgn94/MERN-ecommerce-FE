@@ -16,6 +16,10 @@
   transition: background-color 0.3s ease;
 }
 
+.profile {
+margin-bottom: 10px;
+}
+
 .profileName {
   color: #fff;
  margin-bottom: -0.5px;

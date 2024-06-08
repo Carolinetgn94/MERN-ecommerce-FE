@@ -5,6 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { beServer } from "../../server";
+import { toast } from "react-toastify";
 
 
 function SignUp() {
@@ -54,7 +55,8 @@ function SignUp() {
       .post(`${beServer}/user/create-user`, newForm, config)
       .then((res) => {
         if(res.data.success === true) {
-          navigate("/");
+          navigate("/login");
+          toast.success("Please login")
         }
         console.log(res);
       })
@@ -64,7 +66,7 @@ function SignUp() {
   }
 
   return (
-    <div className="SignUp-Page">
+    <div className="UserSignUp-Page">
       <div className="SignUp-Container">
         <h2 className="SignUp-Title">Register A Free Account</h2>
         <form className="SignUp-Form" onSubmit={handleSubmit}>
