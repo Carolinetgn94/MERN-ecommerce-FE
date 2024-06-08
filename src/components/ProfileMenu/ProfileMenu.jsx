@@ -30,6 +30,10 @@ function ProfileMenu({ setActive, active }) {
         <TbAddressBook size={20} color={active === 2 ? "red" : ""} />
         <span>Address</span>
       </div>
+      <div className="changePasswordIcon" onClick={() => setActive(4)}>
+        <TbAddressBook size={20} color={active === 4 ? "red" : ""} />
+        <span>Change Password</span>
+      </div>
       <div className="logoutIcon" onClick={() => setActive(3) || logoutHandler()}>
         <AiOutlineLogin size={20} color={active === 3 ? "red" : ""} />
         <span>Logout</span>

@@ -1,16 +1,34 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./ProfileInfo.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineCamera, AiOutlineDelete } from "react-icons/ai";
+import { updateUserInformation } from "../../redux/actions/user.action";
+import { toast } from "react-toastify";
 
 function ProfileInfo({ active }) {
-  const { user } = useSelector((state) => state.user);
+  const { user, error, successMessage } = useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
+  const [password, setPassword] = useState(user && user.email);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: "clearErrors" });
+    }
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch({ type: "clearMessages" });
+    }
+  }, [error, successMessage]);
+
 
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(updateUserInformation(name, email, phoneNumber, password));
+    toast.success("Information updated!");
   }
 
   return (
@@ -51,6 +69,15 @@ function ProfileInfo({ active }) {
                   required
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+              </div>
+              <div className="insertPassword">
+                <label >Enter Your Password</label>
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <input required value="Update" type="submit" />
