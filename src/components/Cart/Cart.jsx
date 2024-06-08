@@ -93,8 +93,8 @@ function CartItemCard({ data, quantityChangeHandler, removeFromCartHandler }) {
         </h4>
         <h4 className="cartTotalPrice">SGD{totalPrice}</h4>
       </div>
-      <div className="removeItem">
-        <RxCross1 onClick={() => removeFromCartHandler(data)} />
+      <div className="removeCartItem">
+        <button onClick={() => removeFromCartHandler(data)}>Remove</button>
       </div>
     </div>
   );

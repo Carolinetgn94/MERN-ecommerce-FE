@@ -4,26 +4,25 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsCartPlus } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromWishlist } from "../../redux/actions/wishlist.action";
+import { addToCart } from "../../redux/actions/cart.action";
+import { toast } from "react-toastify";
 
 function WishList ({setOpenWishList}) {
-    // static data
-    const cartData = [
-        {
-            name: "iPhone 15 pro max 512 gb",
-            description: "gold color",
-            price: "2155",
-        },
-        {
-            name: "iPhone 15 pro max 512 gb",
-            description: "gold color",
-            price: "2675",
-        },
-        {
-            name: "iPhone 15 pro max 512 gb",
-            description: "gold color",
-            price: "2455",
-        }
-    ]
+    const { wishlist } = useSelector((state) => state.wishlist);
+    const dispatch = useDispatch();
+
+    function removeFromWishlistHandler(data) {
+        dispatch(removeFromWishlist(data));
+      }
+    
+      const addToCartHandler = (data) => {
+        const newData = {...data, qty:1};
+        dispatch(addToCart(newData));
+        toast.success("Item added to cart!")
+        setOpenWishList(false);
+      }  
 
     return (
         <div className="cartContainer">
@@ -35,13 +34,13 @@ function WishList ({setOpenWishList}) {
             </div>
             <div className="cartItemsQty">
                 <AiOutlineHeart className="cartIcon" size={25} />
-                <h5>Wishlist</h5>
+                <h5> {wishlist && wishlist.length} Items</h5>
             </div>
             <br />
             <div className="cartItemsSection"> 
                 {
-                    cartData && cartData.map((i, index) => (
-                        <CartItemCard key={index} data={i} />
+                    wishlist && wishlist.map((i, index) => (
+                        <CartItemCard key={index} data={i} removeFromWishlistHandler={removeFromWishlistHandler} addToCartHandler={addToCartHandler}/>
                     ))
                 }
             </div>
@@ -50,29 +49,29 @@ function WishList ({setOpenWishList}) {
     )
 }
 
-function CartItemCard({data}) {
+function CartItemCard({data, removeFromWishlistHandler, addToCartHandler}) {
     const [value, setValue] = useState(1);
-
+    const totalPrice = data.price * value;
 
 
     return(
         <div className="cartItemCard">
             <div className="addToCart">
-                <BsCartPlus size={30} title="Add to Cart" />
+                <BsCartPlus size={30} title="Add to Cart" onClick={()=> addToCartHandler(data)}/>
             </div>
             <div className="cartProductImage">
                 <img 
-                src="https://www.nespresso.com/ecom/medias/sys_master/public/17585211473950/GalleryImage-1550x1550px-20.jpg?impolicy=medium&imwidth=1550"
+                src=""
                 alt=""
                 />
             </div>
             <div className="cartProductDetails">
                 <h1>{data.name}</h1>
-                <h4 className="cartItemPrice">$ {data.price} </h4>
+                <h4 className="cartItemPrice">$ {totalPrice} </h4>
               
             </div>
             <div className="removeItem">
-                <button>Remove</button>
+                <button onClick={() => removeFromWishlistHandler(data)}>Remove</button>
             </div>
         </div>
     )

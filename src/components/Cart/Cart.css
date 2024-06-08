@@ -104,7 +104,7 @@
 }
 
 .cartProductDetails {
-  margin-left: 20px;
+  margin-left: 80px;
 }
 
 .cartProductDetails h1 {
@@ -121,12 +121,24 @@
   font-weight: bold;
 }
 
-.removeItem {
-  margin-left: auto;
-  cursor: pointer;
+
+.removeCartItem {
+  width: 35%;
+ margin-left: 120px;
 }
 
-.removeItem svg {
-  width: 20px;
-  height: 20px;
+.removeCartItem button {
+  width: 100%;
+  background-color: #e64848;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5%;
+  transition: background-color 0.3s ease;
+}
+
+.removeCartItem button:hover {
+  background-color: #cc0000;
 }

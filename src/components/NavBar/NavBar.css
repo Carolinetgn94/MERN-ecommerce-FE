@@ -42,6 +42,12 @@
 .wishlist {
   position: absolute;
   margin-left: 500px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.wishlist :hover {
+  color: #555;
 }
 
 .wishlist .wishcount {
@@ -58,8 +64,13 @@
 .shoppingcart {
   position: relative;
   margin-left: 350px;
+  color: #fff;
+  cursor: pointer;
 }
 
+.shoppingcart :hover {
+  color: #555;
+}
 .shoppingcart .cartcount {
   position: absolute;
   top: -5px;
