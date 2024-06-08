@@ -1,13 +1,15 @@
 import { RxCross1 } from "react-icons/rx";
 import "./ProductDetails.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cart.action";
 import { toast } from "react-toastify";
+import { addToWishlist, removeFromWishlist } from "../../redux/actions/wishlist.action";
 
 function ProductDetails({ setView, data }) {
   const { cart } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
   const dispatch = useDispatch();
@@ -34,6 +36,26 @@ function ProductDetails({ setView, data }) {
       toast.success("Item added to cart!")
     }
   }
+
+  useEffect(() => {
+    if (wishlist && wishlist.find((i) => i._id === data._id)) {
+      setClick(true);
+    } else {
+      setClick(false);
+    }
+  }, [wishlist]);
+
+  function removeFromWishlistHandler(data) {
+    setClick(!click);
+    dispatch(removeFromWishlist(data));
+  }
+
+  function addToWishlistHandler(data) {
+    setClick(!click);
+    dispatch(addToWishlist(data));
+  }
+
+
 
   return (
     <div className="productDetailsContainer">
@@ -78,14 +100,14 @@ function ProductDetails({ setView, data }) {
               {click ? (
                 <AiFillHeart
                   size={28}
-                  onClick={() => setClick(!click)}
+                  onClick={() => removeFromWishlistHandler(data)}
                   color={click ? "red" : "#333"}
                   title="Remove from wishlist"
                 />
               ) : (
                 <AiOutlineHeart
                   size={28}
-                  onClick={() => setClick(!click)}
+                  onClick={() => addToWishlistHandler(data)}
                   color={click ? "red" : "#333"}
                   title="Add to wishlist"
                 />

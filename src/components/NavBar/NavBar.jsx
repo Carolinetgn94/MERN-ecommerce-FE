@@ -10,6 +10,7 @@ import WishList from "../WishList/WishList";
 function NavBar() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const [openCart, setOpenCart] = useState(false);
   const [openWishList, setOpenWishList] = useState(false);
 
@@ -26,7 +27,7 @@ function NavBar() {
       </Link>
       <div className="wishlist" onClick={() => setOpenWishList(true)}>
         <AiOutlineHeart size={30} />
-        <span className="wishcount">1</span>
+        <span className="wishcount">{wishlist && wishlist.length}</span>
       </div>
       <div className="shoppingcart" onClick={() => setOpenCart(true)}>
         <AiOutlineShoppingCart size={30} />
