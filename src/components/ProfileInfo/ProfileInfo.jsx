@@ -2,7 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProfileInfo.css";
 import React, { useEffect, useState } from "react";
 import { AiOutlineCamera, AiOutlineDelete } from "react-icons/ai";
-import { updatUserAddress, updateUserInformation } from "../../redux/actions/user.action";
+import {
+  deleteUserAddress,
+  updatUserAddress,
+  updateUserInformation,
+} from "../../redux/actions/user.action";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { beServer } from "../../server";
@@ -10,7 +14,8 @@ import { RxCross1 } from "react-icons/rx";
 import { Country } from "country-state-city";
 
 function ProfileInfo({ active }) {
-  const { user, error, updateAddressSuccessMessage} = useSelector((state) => state.user);
+  const { user, error, successMessage } =
+    useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
@@ -23,11 +28,11 @@ function ProfileInfo({ active }) {
       toast.error(error);
       dispatch({ type: "clearErrors" });
     }
-    if (updateAddressSuccessMessage) {
-      toast.success(updateAddressSuccessMessage);
+    if (successMessage) {
+      toast.success(successMessage);
       dispatch({ type: "clearMessages" });
     }
-  }, [error, updateAddressSuccessMessage]);
+  }, [error, successMessage, dispatch]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -138,6 +143,7 @@ function Address() {
   const [address2, setAddress2] = useState("");
   const [addressType, setAddressType] = useState("");
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   const addressTypeData = [
     {
@@ -150,7 +156,6 @@ function Address() {
       name: "Office",
     },
   ];
-
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -165,7 +170,7 @@ function Address() {
           address1,
           address2,
           postalCode,
-          addressType,
+          addressType
         )
       );
       setOpen(false);
@@ -176,6 +181,11 @@ function Address() {
       setPostalCode(null);
       setAddressType("");
     }
+  }
+
+  function handleDelete(item) {
+    const id = item._id;
+    dispatch(deleteUserAddress(id));
   }
 
   return (
@@ -259,10 +269,7 @@ function Address() {
                     <option value="">Choose Address Type</option>
                     {addressTypeData &&
                       addressTypeData.map((item) => (
-                        <option
-                          key={item.name}
-                          value={item.name}
-                        >
+                        <option key={item.name} value={item.name}>
                           {item.name}
                         </option>
                       ))}
@@ -285,13 +292,41 @@ function Address() {
           <button>Add New</button>
         </div>
       </div>
-
-      <div className="defaultAddress">
-        <h5>Default Address</h5>
-        <h6>pasir ris st 32</h6>
-        <div>
-          <AiOutlineDelete size={25} />
-        </div>
+      <br />
+      <div className="addressesList">
+        {user &&
+          user.addresses.map((item, index) => (
+            <div className="addressRow" key={index}>
+              <div className="addressDetails">
+                <div className="addressType">
+                  <h5>{item.addressType}</h5>
+                </div>
+                <div className="addressText">
+                  <h6>
+                    {item.address1} {item.address2}
+                  </h6>
+                  <h6>
+                    {item.city}, {item.country}
+                  </h6>
+                  <h6>{item.postalCode}</h6>
+                </div>
+                <div className="phoneNumber">
+                  <h6>{user && user.phoneNumber}</h6>
+                </div>
+                <div className="deleteIcon">
+                  <AiOutlineDelete
+                    size={25}
+                    onClick={() => handleDelete(item)}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+          {user && user.addresses.length === 0 && (
+        <h5>
+          You have no saved address!
+        </h5>
+      )}
       </div>
     </div>
   );

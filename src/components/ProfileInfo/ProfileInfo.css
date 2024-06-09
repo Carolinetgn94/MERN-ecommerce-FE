@@ -1,7 +1,7 @@
 .contentContainer {
     padding: 20px;
-    width: 100%;
-    margin-left: -170px;
+    width: 550px;
+    margin-left: -180px;
   }
   
   .profileSection {
@@ -76,7 +76,7 @@
     padding: 10px;
     margin-left: 20px;
     margin-top: -20px;
-    width: 100%;
+    width: 550px;
   }
 
   .headerRow {
@@ -114,28 +114,6 @@
     background-color: #138496;
   }
   
-  .defaultAddress {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
-  
-  .defaultAddress h5,
-  .defaultAddress h6 {
-    margin: 0;
-  }
-  
-  .defaultAddress h5 {
-    font-weight: bold;
-  }
-  
-  .defaultAddress h6 {
-    color: #555;
-  }
 
   .createAddressForm {
     position: fixed;
@@ -199,4 +177,45 @@
   
   .submitNewAddressButton button:hover {
     background-color: #1d4ed8;
+  }
+
+  .addressesList {
+    margin-top: 10px;
+    overflow-x: auto; 
+    white-space: nowrap;
+  }
+  
+  .addressRow {
+    display: infline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+   
+  .addressDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .addressType, .addressText, .phoneNumber {
+    margin-bottom: 3px;
+    margin: -15px
+  }
+  
+  .deleteIcon {
+    cursor: pointer;
+    color: red;
+  }
+  
+  .deleteIcon:hover {
+    color: darkred;
+  }
+  
+  .hidden {
+    display: none;
   }

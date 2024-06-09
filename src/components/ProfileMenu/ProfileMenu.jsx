@@ -3,6 +3,7 @@ import "./ProfileMenu.css";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLogin } from "react-icons/ai";
 import { TbAddressBook } from "react-icons/tb";
+import { RiLockPasswordLine } from "react-icons/ri";
 import axios from "axios";
 import { beServer } from "../../server";
 import { toast } from "react-toastify";
@@ -31,7 +32,7 @@ function ProfileMenu({ setActive, active }) {
         <span>Address</span>
       </div>
       <div className="changePasswordIcon" onClick={() => setActive(4)}>
-        <TbAddressBook size={20} color={active === 4 ? "red" : ""} />
+        <RiLockPasswordLine size={20} color={active === 4 ? "red" : ""} />
         <span>Change Password</span>
       </div>
       <div className="logoutIcon" onClick={() => setActive(3) || logoutHandler()}>
