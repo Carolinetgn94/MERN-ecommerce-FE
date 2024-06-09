@@ -11,8 +11,18 @@
 .checkoutSection{
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     margin-top: 150px;
+}
+
+.checkoutSteps {
+    width: 100%; 
+    margin-bottom: 20px; 
+}
+
+.checkoutDetails {
+    width: 100%; 
 }
