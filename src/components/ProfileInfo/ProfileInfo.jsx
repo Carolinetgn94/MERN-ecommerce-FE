@@ -346,22 +346,21 @@ function ChangePassword() {
 
   async function passwordChangeHandler(e) {
     e.preventDefault();
-    await axios
-      .put(
+    try {
+      const response = await axios.put(
         `${beServer}/user/update-user-password`,
         { oldPassword, newPassword, confirmPassword },
         { withCredentials: true }
-      )
-      .then((res) => {
-        toast.success(res.data.success);
-        setOldPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      });
-
+      );
+      const { success } = response.data;
+      toast.success(success);
+      setOldPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "Old Password is wrong";
+      toast.error(errorMessage);
+    }
   }
 
   return(
