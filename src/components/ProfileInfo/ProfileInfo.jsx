@@ -6,6 +6,8 @@ import { updateUserInformation } from "../../redux/actions/user.action";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { beServer } from "../../server";
+import { RxCross1 } from "react-icons/rx";
+import { Country } from "country-state-city";
 
 function ProfileInfo({ active }) {
   const { user, error, successMessage } = useSelector((state) => state.user);
@@ -13,7 +15,7 @@ function ProfileInfo({ active }) {
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
   const [password, setPassword] = useState(user && user.email);
-  const [avatar, setAvatar] = useState(null)
+  const [avatar, setAvatar] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +28,6 @@ function ProfileInfo({ active }) {
       dispatch({ type: "clearMessages" });
     }
   }, [error, successMessage]);
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,16 +43,19 @@ function ProfileInfo({ active }) {
 
     formData.append("image", e.target.files[0]);
 
-    await axios.put(`${beServer}/user/update-avatar`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    }).then((response) => {
-      window.location.reload();
-    }).catch((error) => {
-      toast.error(error);
-    });
+    await axios
+      .put(`${beServer}/user/update-avatar`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   }
 
   return (
@@ -59,12 +63,18 @@ function ProfileInfo({ active }) {
       {active === 1 && (
         <div className="profileSection">
           <div className="profilePic">
-            <img
-              src={user?.avatar || "placeholder-image-url"}
-              alt="Profile"
+            <img src={user?.avatar || "placeholder-image-url"} alt="Profile" />
+            <input
+              type="file"
+              id="image"
+              className="hidden"
+              onChange={handleImage}
             />
-            <input type="file" id="image" className="hidden" onChange={handleImage}/>
-            <AiOutlineCamera htmlFor="image" className="cameraIcon" onClick={() => document.getElementById('image').click()}/>
+            <AiOutlineCamera
+              htmlFor="image"
+              className="cameraIcon"
+              onClick={() => document.getElementById("image").click()}
+            />
           </div>
           <div className="profileForm">
             <form onSubmit={handleSubmit}>
@@ -96,7 +106,7 @@ function ProfileInfo({ active }) {
                 />
               </div>
               <div className="insertPassword">
-                <label >Enter Your Password</label>
+                <label>Enter Your Password</label>
                 <input
                   type="password"
                   required
@@ -120,13 +130,123 @@ function ProfileInfo({ active }) {
 }
 
 function Address() {
+  const [open, setOpen] = useState(false);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState();
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  async function handleSubmit(e) {
+    e.preventDefault(e);
+
+    if (country === "" || city === "") {
+      toast.error("Please fill all the fields!");
+    } else {
+      // dispatch(
+      //   updatUserAddress(
+      //     country,
+      //     city,
+      //     address1,
+      //     address2,
+      //     postalCode
+      //   )
+      // );
+      setOpen(false);
+      setCountry("");
+      setCity("");
+      setAddress1("");
+      setAddress2("");
+      setPostalCode(null);
+    }
+  }
+
   return (
     <div className="addressContent">
+      {open && (
+        <div className="createAddressForm">
+          <div className="formContainer">
+            <div className="closeForm">
+              <RxCross1 size={30} onClick={() => setOpen(false)} />
+            </div>
+            <div>
+              <h1>Add New Address</h1>
+            </div>
+            <>
+              <form onSubmit={handleSubmit}>
+                <div className="newAddressInfo">
+                  <label>Country</label>
+                  <select
+                    name=""
+                    id=""
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  >
+                    <option value="">Choose Your Country</option>
+                    {Country &&
+                      Country.getAllCountries().map((item) => (
+                        <option
+                          className="block pb-2"
+                          key={item.isoCode}
+                          value={item.isoCode}
+                        >
+                          {item.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="newAddressInfo">
+                  <label>City</label>
+                  <input
+                    type="city"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </div>
+                <div className="newAddressInfo">
+                  <label>Address 1</label>
+                  <input
+                    type="address"
+                    required
+                    value={address1}
+                    onChange={(e) => setAddress1(e.target.value)}
+                  />
+                </div>
+                <div className="newAddressInfo">
+                  <label>Address 2</label>
+                  <input
+                    type="address"
+                    required
+                    value={address2}
+                    onChange={(e) => setAddress2(e.target.value)}
+                  />
+                </div>
+                <div className="newAddressInfo">
+                  <label>Postal Code</label>
+                  <input
+                    type="number"
+                    required
+                    value={postalCode}
+                    onChange={(e) => setPostalCode(e.target.value)}
+                  />
+                </div>
+                <div className="submitNewAddressButton">
+                  <button type="submit">Submit</button>
+                </div>
+              </form>
+            </>
+          </div>
+        </div>
+      )}
+
       <div className="headerRow">
         <div className="addressTitle">
           <h1>My Addresses</h1>
         </div>
-        <div className="addAddressButton">
+        <div className="addAddressButton" onClick={() => setOpen(true)}>
           <button>Add New</button>
         </div>
       </div>
