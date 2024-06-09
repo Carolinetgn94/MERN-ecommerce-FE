@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProfileInfo.css";
 import React, { useEffect, useState } from "react";
 import { AiOutlineCamera, AiOutlineDelete } from "react-icons/ai";
-import { updateUserInformation } from "../../redux/actions/user.action";
+import { updatUserAddress, updateUserInformation } from "../../redux/actions/user.action";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { beServer } from "../../server";
@@ -10,7 +10,7 @@ import { RxCross1 } from "react-icons/rx";
 import { Country } from "country-state-city";
 
 function ProfileInfo({ active }) {
-  const { user, error, successMessage } = useSelector((state) => state.user);
+  const { user, error, updateAddressSuccessMessage} = useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
@@ -23,11 +23,11 @@ function ProfileInfo({ active }) {
       toast.error(error);
       dispatch({ type: "clearErrors" });
     }
-    if (successMessage) {
-      toast.success(successMessage);
+    if (updateAddressSuccessMessage) {
+      toast.success(updateAddressSuccessMessage);
       dispatch({ type: "clearMessages" });
     }
-  }, [error, successMessage]);
+  }, [error, updateAddressSuccessMessage]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -136,30 +136,45 @@ function Address() {
   const [postalCode, setPostalCode] = useState();
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
-  const { user } = useSelector((state) => state.user);
+  const [addressType, setAddressType] = useState("");
   const dispatch = useDispatch();
 
+  const addressTypeData = [
+    {
+      name: "Default",
+    },
+    {
+      name: "Home",
+    },
+    {
+      name: "Office",
+    },
+  ];
+
+
   async function handleSubmit(e) {
-    e.preventDefault(e);
+    e.preventDefault();
 
     if (country === "" || city === "") {
       toast.error("Please fill all the fields!");
     } else {
-      // dispatch(
-      //   updatUserAddress(
-      //     country,
-      //     city,
-      //     address1,
-      //     address2,
-      //     postalCode
-      //   )
-      // );
+      dispatch(
+        updatUserAddress(
+          country,
+          city,
+          address1,
+          address2,
+          postalCode,
+          addressType,
+        )
+      );
       setOpen(false);
       setCountry("");
       setCity("");
       setAddress1("");
       setAddress2("");
       setPostalCode(null);
+      setAddressType("");
     }
   }
 
@@ -232,6 +247,26 @@ function Address() {
                     value={postalCode}
                     onChange={(e) => setPostalCode(e.target.value)}
                   />
+                </div>
+                <div className="newAddressInfo">
+                  <label>Address Type</label>
+                  <select
+                    name=""
+                    id=""
+                    value={addressType}
+                    onChange={(e) => setAddressType(e.target.value)}
+                  >
+                    <option value="">Choose Address Type</option>
+                    {addressTypeData &&
+                      addressTypeData.map((item) => (
+                        <option
+                          key={item.name}
+                          value={item.name}
+                        >
+                          {item.name}
+                        </option>
+                      ))}
+                  </select>
                 </div>
                 <div className="submitNewAddressButton">
                   <button type="submit">Submit</button>

@@ -21,7 +21,6 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-
 export const loadSeller = () => async (dispatch) => {
   try {
     dispatch({
@@ -59,7 +58,6 @@ export const updateUserInformation =
         },
         {
           withCredentials: true,
-          
         }
       );
 
@@ -70,6 +68,41 @@ export const updateUserInformation =
     } catch (error) {
       dispatch({
         type: "updateUserInfoFailed",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+export const updatUserAddress =
+  (country, city, address1, address2, postalCode, addressType) => async (dispatch) => {
+    try {
+      dispatch({
+        type: "updateUserAddressRequest",
+      });
+
+      const { data } = await axios.put(
+        `${beServer}/user/update-user-addresses`,
+        {
+          country,
+          city,
+          address1,
+          address2,
+          postalCode,
+          addressType
+        },
+        { withCredentials: true }
+      );
+
+      dispatch({
+        type: "updateUserAddressSuccess",
+        payload: {
+          message: "User address updated succesfully!",
+          user: data.user,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: "updateUserAddressFailed",
         payload: error.response.data.message,
       });
     }

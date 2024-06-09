@@ -32,6 +32,19 @@ export const userReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
     })
 
+    .addCase("updateUserAddressRequest", (state) => {
+      state.addressloading = true;
+    })
+    .addCase("updateUserAddressSuccess", (state, action) => {
+      state.addressloading = false;
+      state.updateAddressSuccessMessage = action.payload.message;
+      state.user = action.payload;
+    })
+    .addCase("updateUserAddressFail", (state, action) => {
+      state.addressloading = false;
+      state.error = action.payload;
+    })
+
     .addCase("clearErrors", (state) => {
       state.error = null;
     });
