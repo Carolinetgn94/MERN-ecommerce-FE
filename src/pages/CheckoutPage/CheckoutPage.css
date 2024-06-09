@@ -15,14 +15,17 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 90px;
+
 }
 
 .checkoutSteps {
     width: 100%; 
     margin-bottom: 20px; 
+    margin-top: 100px;
 }
 
 .checkoutDetails {
-    width: 100%; 
+    width: 100%;
+    margin-left: 30px; 
 }

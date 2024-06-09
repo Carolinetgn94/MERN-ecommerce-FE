@@ -1,0 +1,53 @@
+
+.checkout-steps-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .checkout-steps-wrapper {
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .checkout-step {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkout-step-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #FDE1E6;
+  }
+  
+  .checkout-step-text {
+    color: #f63b60;
+  }
+  
+  .checkout-step-line {
+    width: 30px;
+    max-width: 70px;
+    height: 4px;
+    background-color: #FDE1E6;
+  }
+  
+  .checkout-step-line.active {
+    background-color: #f63b60;
+  }
+  
+  .checkout-step-line.inactive {
+    background-color: #FDE1E6;
+  }
+  
+  .inactive-background {
+    background-color: #FDE1E6;
+  }
+  
+  .inactive-text {
+    color: #FDE1E6;
+  }
+  
