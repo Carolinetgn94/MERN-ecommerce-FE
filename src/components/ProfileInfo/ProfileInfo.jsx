@@ -130,6 +130,11 @@ function ProfileInfo({ active }) {
           <Address />
         </div>
       )}
+       {active === 4 && (
+        <div>
+          <ChangePassword />
+        </div>
+      )}
     </div>
   );
 }
@@ -330,6 +335,59 @@ function Address() {
       </div>
     </div>
   );
+}
+
+
+function ChangePassword() {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+
+  async function passwordChangeHandler(e) {
+    e.preventDefault();
+
+  }
+
+  return(
+    <div className="changePwSection">
+      <div className="changePwHeader">
+        <h1>Change Password</h1>
+      </div>
+      <div className="changePwForm">
+        <form onSubmit={passwordChangeHandler}>
+          <div className="updatePwField">
+            <label>Enter your old password</label>
+            <input 
+             type="password"
+             value={oldPassword}
+             onChange={(e) => setOldPassword(e.target.value)}
+            />
+          </div>
+          <div className="updatePwField">
+            <label>Enter your new password</label>
+            <input 
+             type="password"
+             value={newPassword}
+             onChange={(e) => setNewPassword(e.target.value)}
+            />
+          </div>
+          <div className="updatePwField">
+            <label>Confirm your new password</label>
+            <input 
+             type="password"
+             value={confirmPassword}
+             onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div className="updatePwButton">
+            <button type="submit">Update</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  )
 }
 
 export default ProfileInfo;

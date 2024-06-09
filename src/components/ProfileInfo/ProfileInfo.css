@@ -219,3 +219,76 @@
   .hidden {
     display: none;
   }
+
+
+
+.changePwSection {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.changePwHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.changePwHeader h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.changePwForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.updatePwField {
+  margin-bottom: 15px;
+}
+
+.updatePwField label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.updatePwField input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.updatePwField input:focus {
+  border-color: #333;
+  outline: none;
+}
+
+.updatePwButton {
+  text-align: center;
+}
+
+.updatePwButton button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.updatePwButton button:hover {
+  background-color: #45a049;
+}
