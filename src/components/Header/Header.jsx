@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 function Header() {
   const { allProducts } = useSelector((state) => state.products);
+  const { isSeller } = useSelector((state) => state.seller);
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -75,11 +76,10 @@ function Header() {
             </div>
           ) : null}
         </div>
-        {/*  will try continue search function when have data */}
 
         <div className="seller">
           <Link to="/create-shop" className="seller-link">
-            <h3>Become a Seller</h3>
+            <h3>{isSeller ? "Go Dashboard" : "Become Seller"}</h3>
           </Link>
         </div>
       </div>
