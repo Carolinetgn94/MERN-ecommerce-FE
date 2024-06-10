@@ -78,7 +78,7 @@ function Header() {
         </div>
 
         <div className="seller">
-          <Link to="/create-shop" className="seller-link">
+          <Link to={`${isSeller ? "/dashboard" : "/create-shop"}`}>
             <h3>{isSeller ? "Go Dashboard" : "Become Seller"}</h3>
           </Link>
         </div>

@@ -1,0 +1,88 @@
+.shopSettingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .shopAvatar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 2rem;
+    border: 3px solid #007bff;
+    margin-bottom: 30px;
+  }
+  
+  .shopAvatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cameraIcon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cameraIcon svg {
+    font-size: 20px;
+  }
+  
+  .shopSettingForm {
+    width: 100%;
+  }
+  
+  .shopSettingForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .shopSettingForm label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .shopSettingForm input[type="text"],
+  .shopSettingForm input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .shopSettingForm input[type="file"] {
+    display: none;
+  }
+  
+  .shopSettingForm input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .shopSettingForm input[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }

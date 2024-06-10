@@ -9,17 +9,23 @@ function DashboardHeader() {
 
   return (
     <div className="dashboardHeader">
+       
+       <div className="homepageLogo">
+        <Link to="/">
+          <h3>image logo</h3>
+        </Link>
+      </div>
       <div className="dashboardLogo">
         <Link to="/dashboard">
           <h2>Dashboard</h2>
         </Link>
       </div>
       <div className="dashboardNav">
-        <div className="dashboardOrders">
+        {/* <div className="dashboardOrders">
           <Link to="/dashboard-orders">
             <FiPackage size={30} />
           </Link>
-        </div>
+        </div> */}
         <div className="dashboardProducts">
           <Link to="/dashboard-products">
             <FiShoppingBag size={30} />

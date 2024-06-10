@@ -27,6 +27,7 @@ import { loadSeller, loadUser } from "./redux/actions/user.action";
 import ProtectedRoute from "./ProtectedRoute";
 import SellerProtectedRoute from "./SellerProtectedRoute";
 import { getAllProducts } from "./redux/actions/product.action";
+import ShopSettingsPage from "./pages/ShopSettingsPage/ShopSettingsPage";
 
 
 
@@ -74,6 +75,14 @@ function App() {
             element={
               <SellerProtectedRoute>
                 <ShopHomePage />
+              </SellerProtectedRoute>
+            }
+          />
+           <Route
+            path="/settings"
+            element={
+              <SellerProtectedRoute>
+                <ShopSettingsPage />
               </SellerProtectedRoute>
             }
           />
