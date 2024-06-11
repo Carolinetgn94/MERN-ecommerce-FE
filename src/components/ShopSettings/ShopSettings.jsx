@@ -17,6 +17,10 @@ function ShopSettings() {
   async function handleImage(e) {
     const file = e.target.files[0];
     setAvatar(file);
+
+    const formData = new FormData();
+
+    formData.append("image", e.target.files[0]);
   }
 
   async function updateHandler(e) {
@@ -26,7 +30,7 @@ function ShopSettings() {
   return (
     <div className="shopSettingContainer">
       <div className="shopAvatar">
-        <img src={seller?.avatar || "placeholder-image-url"} alt="shopAvatar" />
+        <img src={avatar ? URL.createObjectURL(avatar) : "placeholder-image-url"} alt="shopAvatar" />
 
         <input
           type="file"
