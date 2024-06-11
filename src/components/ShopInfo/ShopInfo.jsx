@@ -1,13 +1,22 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./ShopInfo.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { beServer } from "../../server";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { getAllProductsShop } from "../../redux/actions/product.action";
 
 function ShopInfo({ isOwner }) {
   const { seller } = useSelector((state) => state.seller);
+   const {products} = useSelector((state) => state.products);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {id} = useParams();
+
+  useEffect(() => {
+    dispatch(getAllProductsShop(id))
+  }, [])
 
   async function logoutHandler() {
     axios.get(`${beServer}/shop/logout`, {
@@ -40,7 +49,7 @@ function ShopInfo({ isOwner }) {
         </div>
         <div className="shopInfo">
           <h5>Total Products</h5>
-          <h4>6</h4>
+          <h4>{products && products.length}</h4>
         </div>
         <div className="shopInfo">
           <h5>Joined On</h5>

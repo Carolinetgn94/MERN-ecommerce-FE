@@ -9,7 +9,7 @@ function ShopDashboardPage() {
                <DashboardHeader />  
             </div>
             <div className="sideBar">
-                <DashboardSideBar />
+                <DashboardSideBar/>
             </div>
            
         </div>

@@ -1,4 +1,5 @@
-import Header from "../../components/Header/Header";
+import DashboardHeader from "../../components/DashboadHeader/DashboardHeader";
+import DashboardSideBar from "../../components/DashboardSideBar/DashboardSideBar";
 import ShopSettings from "../../components/ShopSettings/ShopSettings";
 import "./ShopSettingsPage.css";
 
@@ -6,7 +7,10 @@ function ShopSettingsPage() {
     return(
         <div>
            <div className="headerSection">
-                <Header />
+                <DashboardHeader />
+            </div>
+            <div className="sideBar">
+                <DashboardSideBar active={4}/>
             </div>
             <div className="shopSettingsSection">
                 <ShopSettings />
