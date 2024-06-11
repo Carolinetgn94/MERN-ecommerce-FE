@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineCamera, AiOutlineDelete } from "react-icons/ai";
 import {
   deleteUserAddress,
+  loadUser,
   updatUserAddress,
   updateUserInformation,
 } from "../../redux/actions/user.action";
@@ -56,7 +57,9 @@ function ProfileInfo({ active }) {
         withCredentials: true,
       })
       .then((response) => {
-        window.location.reload();
+        // window.location.reload();
+        dispatch(loadUser());
+        toast.success("Avatar Updated Successfully")
       })
       .catch((error) => {
         toast.error(error);

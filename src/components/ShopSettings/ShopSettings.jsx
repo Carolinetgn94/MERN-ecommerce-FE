@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./ShopSettings.css";
 import React, { useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
+import { beServer } from "../../server";
+import { loadSeller } from "../../redux/actions/user.action";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function ShopSettings() {
   const { seller } = useSelector((state) => state.seller);
+  const dispatch = useDispatch();
   const [avatar, setAvatar] = useState();
   const [name, setName] = useState(seller && seller.name);
   const [description, setDescription] = useState(
@@ -21,10 +26,42 @@ function ShopSettings() {
     const formData = new FormData();
 
     formData.append("image", e.target.files[0]);
+
+    await axios.put(`${beServer}/shop/update-shop-avatar`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+    }).then((res) => {
+        dispatch(loadSeller());
+        toast.success("Avatar updated successfully!")
+    }).catch((error) => {
+        toast.error(error.response.data.message);
+    })
   }
 
   async function updateHandler(e) {
     e.preventDefault();
+
+    await axios
+    .put(
+      `${beServer}/shop/update-seller-info`,
+      {
+        name,
+        address,
+        postalCode,
+        phoneNumber,
+        description,
+      },
+      { withCredentials: true }
+    )
+    .then((res) => {
+      toast.success("Shop info updated succesfully!");
+      dispatch(loadSeller());
+    })
+    .catch((error) => {
+      toast.error(error.response.data.message);
+    });
   }
 
   return (
