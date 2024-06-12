@@ -25,8 +25,11 @@ function CreateProduct() {
       }
       if (success) {
         toast.success("Product created successfully!");
-        navigate("/dashboard");
-        window.location.reload();
+        setName("");
+        setDescription("");
+        setCategory("");
+        setPrice("");
+        setImages([]);
       }
   }, [dispatch, error, success, navigate])
 

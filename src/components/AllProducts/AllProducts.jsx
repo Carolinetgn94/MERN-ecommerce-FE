@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { DataGrid } from "@mui/x-data-grid";
+import { toast } from "react-toastify";
 
 function AllProducts() {
   const { products } = useSelector((state) => state.products);
@@ -19,6 +20,7 @@ function AllProducts() {
 
   function handleDelete(id) {
     dispatch(deleteProduct(id));
+    toast.success("Product deleted!")
     window.location.reload();
   }
 
