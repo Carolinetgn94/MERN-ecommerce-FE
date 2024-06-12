@@ -42,36 +42,62 @@ function ProfileInfo({ active }) {
   }
 
   async function handleImage(e) {
-    const file = e.target.files[0];
-    setAvatar(file);
+    const reader = new FileReader();
 
-    const formData = new FormData();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+        axios
+          .put(
+            `${beServer}/user/update-avatar`,
+            { avatar: reader.result },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((response) => {
+            dispatch(loadUser());
+            toast.success("avatar updated successfully!");
+          })
+          .catch((error) => {
+            toast.error(error);
+          });
+      }
+    };
 
-    formData.append("image", e.target.files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+}
 
-    await axios
-      .put(`${beServer}/user/update-avatar`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      })
-      .then((response) => {
-        // window.location.reload();
-        dispatch(loadUser());
-        toast.success("Avatar Updated Successfully")
-      })
-      .catch((error) => {
-        toast.error(error);
-      });
-  }
+    // const file = e.target.files[0];
+    // setAvatar(file);
+
+    // const formData = new FormData();
+
+    // formData.append("image", e.target.files[0]);
+
+    // await axios
+    //   .put(`${beServer}/user/update-avatar`, formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //     withCredentials: true,
+    //   })
+    //   .then((response) => {
+    //     // window.location.reload();
+    //     dispatch(loadUser());
+    //     toast.success("Avatar Updated Successfully")
+    //   })
+    //   .catch((error) => {
+    //     toast.error(error);
+    //   });
+  
 
   return (
     <div className="contentContainer">
       {active === 1 && (
         <div className="profileSection">
           <div className="profilePic">
-            <img src={user?.avatar || "placeholder-image-url"} alt="Profile" />
+            <img src={`${user?.avatar?.url}`} alt="Profile" />
             <input
               type="file"
               id="image"

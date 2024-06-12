@@ -30,8 +30,6 @@ import { getAllProducts } from "./redux/actions/product.action";
 import ShopSettingsPage from "./pages/ShopSettingsPage/ShopSettingsPage";
 
 
-
-
 function App() {
 
   useEffect(() => {

@@ -9,60 +9,61 @@ import { toast } from "react-toastify";
 
 
 function SignUp() {
-
-  const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-  });
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(null);
-
+  const [avatar, setAvatar] = useState(null);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const navigate = useNavigate();
 
   function handleImageUpload(e) {
     const file = e.target.files[0];
-    setUserInfo((prevState) => ({ ...prevState, avatar: file }));
-    setAvatarPreview(URL.createObjectURL(file));
-     }
-    // const reader = new FileReader();
-
-    // reader.onload = () => {
-    //   setUserInfo((prevState) => ({ ...prevState, avatar: reader.result}));
-    // };
-
-    // reader.readAsDataURL(file);
- 
-  
-
-  function handleChange(e) {
-    setUserInfo({ ...userInfo, [e.target.name]: e.target.value, error: "" });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
-
-    const newForm = new FormData();
-    newForm.append("file", userInfo.avatar);
-    newForm.append("name", userInfo.name);
-    newForm.append("email", userInfo.email);
-    newForm.append("password", userInfo.password);
-
-  
-    axios
-      .post(`${beServer}/user/create-user`, newForm, config)
-      .then((res) => {
-        if(res.data.success === true) {
-          navigate("/login");
-          toast.success("Please login")
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatar(reader.result);
         }
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      };
+      reader.readAsDataURL(file);
+      setAvatarFile(file);
+    }
+  }
+ 
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    if (avatarFile) {
+      formData.append("avatar", avatarFile);
+    }
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const res = await axios.post(`${beServer}/user/create-user`, formData, config);
+  
+      toast.success(res.data.message);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setAvatar(null);
+      setAvatarFile(null);
+      if (res.data.success) {
+        navigate("/login");
+        toast.success("Please login");
+      }
+    } catch (err) {
+      toast.error(err.response.data.message || "Something went wrong!");
+      console.error(err);
+    }
   }
 
   return (
@@ -77,8 +78,8 @@ function SignUp() {
               type="text"
               name="name"
               required
-              value={userInfo.name}
-              onChange={handleChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             ></input>
           </div>
 
@@ -90,8 +91,8 @@ function SignUp() {
               name="email"
               placeholder="e.g john@email.com"
               required
-              value={userInfo.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
 
@@ -103,8 +104,8 @@ function SignUp() {
               name="password"
               placeholder="Enter Password "
               required
-              value={userInfo.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             ></input>
 
             {visible ? (
@@ -117,9 +118,9 @@ function SignUp() {
           <div className="avatar-section">
             <label className="file-input">
               <span className="avatar-container">
-                {avatarPreview ? (
+                {avatar ? (
                   <img
-                    src={avatarPreview}
+                    src={avatar}
                     alt="avatar"
                     className="avatar-image"
                   />

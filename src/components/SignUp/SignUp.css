@@ -5,6 +5,7 @@
   align-items: center;
   height: 350vh;
   width: auto;
+  margin-top: -850px;
 }
 
 .SignUp-Container {
@@ -21,7 +22,7 @@
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333; /* Title color */
+  color: #333; 
 }
 
 .SignUp-Form {
@@ -38,8 +39,6 @@
 label {
   font-size: 16px;
   margin-bottom: 5px;
-  
-
 }
 
 .InputBox {
@@ -65,17 +64,17 @@ width: calc(100% - 20px);
 .submit-button button {
   width: 100%;
   padding: 10px;
-  background-color: #2563eb; /* Button background color */
-  color: #fff; /* Button text color */
+  background-color: #2563eb; 
+  color: #fff; 
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 2rem;
+  margin-top:25px;
 }
 
 .submit-button button:hover {
-  background-color: #1d4ed8; /* Hover background color */
+  background-color: #1d4ed8; 
 }
 
 .sign-up-link {

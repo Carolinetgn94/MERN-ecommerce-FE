@@ -86,7 +86,7 @@ function Login() {
           </div>
         </form>
       </div>
-      {/* <p className="error-message">&nbsp;{userInfo.error}</p> */}
+      <p className="error-message">&nbsp;{userInfo.error}</p>
     </div>
   );
 }

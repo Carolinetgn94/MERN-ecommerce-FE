@@ -40,9 +40,8 @@ function NavBar() {
         <div className="profile">
           {isAuthenticated ? (
             <Link to="/profile">
-              <img src={`${user.avatar?.url}`} alt="" />
+              <img src={`${user?.avatar?.url}`} alt="" />
               <p className="profileName">{`Hello, ${user.name}`}</p>
-              <CgProfile size={30} />
             </Link>
           ) : (
             <Link to="/login">
