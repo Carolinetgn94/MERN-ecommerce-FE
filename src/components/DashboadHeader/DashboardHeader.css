@@ -9,7 +9,7 @@
 }
 
 .dashboardLogo h2 {
-    margin: 0;
+    margin-left: 15px;
     font-size: 24px;
     color: #fff;
 }
@@ -18,9 +18,16 @@
     text-decoration: none;
 }
 
+.dashboardLogo:hover h2 {
+    color: #124d96;
+}
+
 .dashboardNav {
     display: flex;
-    gap: 20px;
+    justify-content:right;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
 }
 
 .dashboardNavItem {
@@ -30,6 +37,10 @@
     text-decoration: none;
     color: #fff;
     font-size: 14px;
+}
+
+.dashboardNavItem h4 {
+    margin-left: 15px;
 }
 
 .dashboardNavItem span {
@@ -43,8 +54,9 @@
 
 .dashboardNavItem svg {
     transition: color 0.3s;
+    color: #cbd5e1;
 }
 
 .dashboardNavItem:hover svg {
-    color: #cbd5e1;
+    color: #124d96;
 }

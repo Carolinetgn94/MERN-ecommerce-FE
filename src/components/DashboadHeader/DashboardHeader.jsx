@@ -26,16 +26,20 @@ function DashboardHeader() {
             <FiPackage size={30} />
           </Link>
         </div> */}
-        <div className="dashboardProducts">
+        <div className="dashboardNavItem">
           <Link to="/dashboard-products">
-            <FiShoppingBag size={30} />
+            <FiShoppingBag className="icon" size={30} />
           </Link>
+        </div> 
+        <div className="dashboardNavItem">
+          <h4>Hello, {seller.name}!</h4>
         </div>
-        <div className="dashboardProfile">
+        <div className="dashboardNavItem">
           <Link to={`/shop/${seller._id}`}>
-            <CgProfile size={30} />
+            <CgProfile className="icon" size={30} />
           </Link>
         </div>
+       
       </div>
     </div>
   );
