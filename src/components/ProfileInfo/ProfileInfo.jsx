@@ -42,55 +42,31 @@ function ProfileInfo({ active }) {
   }
 
   async function handleImage(e) {
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-        axios
-          .put(
-            `${beServer}/user/update-avatar`,
-            { avatar: reader.result },
-            {
-              withCredentials: true,
-            }
-          )
-          .then((response) => {
-            dispatch(loadUser());
-            toast.success("avatar updated successfully!");
-          })
-          .catch((error) => {
-            toast.error(error);
-          });
-      }
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
-}
-
-    // const file = e.target.files[0];
-    // setAvatar(file);
-
-    // const formData = new FormData();
-
-    // formData.append("image", e.target.files[0]);
-
-    // await axios
-    //   .put(`${beServer}/user/update-avatar`, formData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //     withCredentials: true,
-    //   })
-    //   .then((response) => {
-    //     // window.location.reload();
-    //     dispatch(loadUser());
-    //     toast.success("Avatar Updated Successfully")
-    //   })
-    //   .catch((error) => {
-    //     toast.error(error);
-    //   });
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('avatar', file);
   
+
+  axios
+    .put(
+      `${beServer}/user/update-avatar`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'ultipart/form-data',
+        },
+        withCredentials: true,
+      }
+    )
+    .then((response) => {
+      dispatch(loadUser());
+      toast.success("avatar updated successfully!");
+    })
+    .catch((error) => {
+      toast.error(error);
+    });
+}
 
   return (
     <div className="contentContainer">
