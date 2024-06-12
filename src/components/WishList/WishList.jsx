@@ -61,8 +61,7 @@ function CartItemCard({data, removeFromWishlistHandler, addToCartHandler}) {
             </div>
             <div className="cartProductImage">
                 <img 
-                src=""
-                alt=""
+                src={data.images[0]} alt={data.name}
                 />
             </div>
             <div className="cartProductDetails">

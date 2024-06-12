@@ -56,7 +56,7 @@ function ProductCard({ data }) {
     <div className="productCardContainer">
       <div className="productImage">
         <Link to={`/product/${data.name}`}>
-          {/* <img src={data.image_Url[0].url} alt="" /> */}
+          <img src={data.images[0]} alt={data.name} />
         </Link>
       </div>
       <div className="shopName">

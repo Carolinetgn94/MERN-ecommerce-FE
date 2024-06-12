@@ -84,7 +84,7 @@ function CartItemCard({ data, quantityChangeHandler, removeFromCartHandler }) {
         <HiOutlineMinus size={18} />
       </div>
       <div className="cartProductImage">
-        <img src="" alt="" />
+        <img src={data.images[0]} alt={data.name} />
       </div>
       <div className="cartProductDetails">
         <h1>{data.name}</h1>

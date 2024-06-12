@@ -63,12 +63,12 @@ function ProductDetails({ setView, data }) {
         <div className="closeButton">
           <RxCross1 size={30} onClick={() => setView(false)} />
           <div className="productSmallDetails">
-            {/* <img
-              className="productDetailsImage"
-              src={data.image_Url[0].url}
-              alt=""
-            />
             <img
+              className="productDetailsImage"
+              src={data.images[0]} 
+              alt={data.name}
+            />
+            {/* <img
               className="shopAvatar"
               src={data.shop.shop_avatar.url}
               alt=""

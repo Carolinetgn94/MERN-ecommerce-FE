@@ -62,7 +62,7 @@ function MainProductDetails({ data }) {
       {data ? (
         <div className="productContainer">
           <div className="mainProductImage">
-            {/* <img src={data?.image_Url[0].url} alt="" /> */}
+            <img src={data.images[0]} alt={data.name} />
           </div>
           <div className="mainProductName">
             <h1>{data.name}</h1>
