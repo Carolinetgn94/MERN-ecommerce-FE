@@ -1,14 +1,25 @@
+
 .nav-items {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
   background-color: #0cb18d;
-  padding: 0px 20px;
   width: 100%;
-  height: 80px;
+  height: 60px;
 }
 
-.nav-items a {
+.navItemsLeft,
+.navItemsRight {
+  display: flex;
+  align-items: center;
+}
+
+.navItemsRight {
+  gap: 20px;
+}
+
+.navItemsLeft a {
   color: #fff;
   text-decoration: none;
   margin: 0 10px;
@@ -17,72 +28,51 @@
   transition: background-color 0.3s ease;
 }
 
-.profile {
-margin-bottom: 25px;
+.navItemsLeft a:hover {
+  color: #555;
+}
+
+.home-link, .products-link, .FAQ-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.wishlist, .shoppingcart, .profile {
+  position: relative;
+  cursor: pointer;
+  color: #fff;
+}
+
+.wishlist:hover, .shoppingcart:hover, .profile:hover {
+  color: #555;
+}
+
+.wishlist .wishcount, .shoppingcart .cartcount {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: rgb(230, 78, 78);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+.profile img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 .profileName {
   color: #fff;
- margin-bottom: -0.5px;
+  margin: 0;
 }
 
-
-.nav-items a:hover {
-    color: #555;
-}
-
-.home-link {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.products-link {
-  font-size: 18px;
-}
-
-.FAQ-link {
-  font-size: 16px;
-}
-
-.wishlist {
-  position: absolute;
-  margin-left: 500px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.wishlist :hover {
-  color: #555;
-}
-
-.wishlist .wishcount {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: rgb(230, 78, 78);
-  color: #fff;
-  font-size: 12px;
-  padding: 2px 5px;
-  border-radius: 50%;
-}
-
-.shoppingcart {
-  position: relative;
-  margin-left: 350px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.shoppingcart :hover {
-  color: #555;
-}
-.shoppingcart .cartcount {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: rgb(230, 78, 78);
-  color: #fff;
-  font-size: 12px;
-  padding: 2px 5px;
-  border-radius: 50%;
+.profile a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
 }
