@@ -25,7 +25,7 @@ function ShopSettings() {
 
     const formData = new FormData();
 
-    formData.append("image", e.target.files[0]);
+    formData.append("file", file);
 
     await axios.put(`${beServer}/shop/update-shop-avatar`, formData, {
         headers: {
@@ -67,7 +67,9 @@ function ShopSettings() {
   return (
     <div className="shopSettingContainer">
       <div className="shopAvatar">
-        <img src={avatar ? URL.createObjectURL(avatar) : "placeholder-image-url"} alt="shopAvatar" />
+        <img 
+        src={avatar ? URL.createObjectURL(avatar) : seller.avatar ? seller.avatar : "placeholder-image-url"} 
+        alt="shopAvatar" />
 
         <input
           type="file"
