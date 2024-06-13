@@ -20,6 +20,10 @@ function ShopCreate() {
 
   function handleImageUpload(e) {
     const file = e.target.files[0];
+    if (!file.type.match(/^image\/(jpg|jpeg|png)$/)) {
+      toast.error("Please upload a valid image file (jpg, jpeg, png)");
+      return;
+    }
     setAvatar(file);
   }
 
@@ -39,14 +43,8 @@ function ShopCreate() {
     axios
       .post(`${beServer}/shop/create-shop`, newForm, config)
       .then((res) => {
-        toast.success(res.data.message);
-        setName("");
-        setEmail("");
-        setPassword("");
-        setAddress("");
-        setPostalCode();
-        setAvatar();
-        setPhoneNumber();
+        toast.success("Shop created successfully! Please login");
+        navigate("/dashboard")
       })
       .catch((error) => {
         toast.error(error.response.data.message);

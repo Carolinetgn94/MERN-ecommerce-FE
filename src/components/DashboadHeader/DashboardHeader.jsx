@@ -36,7 +36,15 @@ function DashboardHeader() {
         </div>
         <div className="dashboardNavItem">
           <Link to={`/shop/${seller._id}`}>
-            <CgProfile className="icon" size={30} />
+          {seller?.avatar? (
+              <img
+                src={seller.avatar}
+                alt={seller.name}
+                className="dashboardAvatarIcon"
+              />
+            ) : (
+              <CgProfile className="icon" size={30} />
+            )}
           </Link>
         </div>
        

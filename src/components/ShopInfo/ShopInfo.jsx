@@ -6,26 +6,29 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { getAllProductsShop } from "../../redux/actions/product.action";
+import { CgProfile } from "react-icons/cg";
 
 function ShopInfo({ isOwner }) {
   const { seller } = useSelector((state) => state.seller);
-   const {products} = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.products);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getAllProductsShop(id))
-  }, [])
+    dispatch(getAllProductsShop(id));
+  }, []);
 
   async function logoutHandler() {
-    axios.get(`${beServer}/shop/logout`, {
-      withCredentials: true}).then((res) => {
+    axios
+      .get(`${beServer}/shop/logout`, {
+        withCredentials: true,
+      })
+      .then((res) => {
         toast.success(res.data.message);
         window.location.reload(true);
-        navigate("/shop-login")
+        navigate("/shop-login");
       });
-    // window.location.reload();
   }
 
   return (
@@ -33,6 +36,17 @@ function ShopInfo({ isOwner }) {
       <div className="shopInfoHeader">
         <div className="shopInfoTitle">
           <h2>Hello, {seller.name}</h2>
+        </div>
+        <div className="dashboardAvatar">
+          {seller?.avatar ? (
+            <img
+              src={seller.avatar}
+              alt={seller.name}
+              className="dashboardAvatarImg"
+            />
+          ) : (
+            <CgProfile className="icon" size={30} />
+          )}
         </div>
         <div className="shopInfoDescription">
           <p>{seller.description}</p>
