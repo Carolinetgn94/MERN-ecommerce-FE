@@ -12,6 +12,7 @@ function MainProductDetails({ data }) {
   const { wishlist } = useSelector((state) => state.wishlist);
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
+  const [select, setSelect] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +46,6 @@ function MainProductDetails({ data }) {
     }
   }
 
- 
 
   function removeFromWishlistHandler(data) {
     setClick(!click);
@@ -62,7 +62,18 @@ function MainProductDetails({ data }) {
       {data ? (
         <div className="productContainer">
           <div className="mainProductImage">
-            <img src={data.images[0]} alt={data.name} />
+            <img src={data.images[select]} alt={data.name} />
+            <div className="image-thumbnails">
+              {data.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={data.name}
+                  className="thumbnail"
+                  onClick={() => setSelect(index)}
+                />
+              ))}
+            </div>
           </div>
           <div className="mainProductName">
             <h1>{data.name}</h1>
