@@ -28,6 +28,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import SellerProtectedRoute from "./SellerProtectedRoute";
 import { getAllProducts } from "./redux/actions/product.action";
 import ShopSettingsPage from "./pages/ShopSettingsPage/ShopSettingsPage";
+import EditProductPage from "./pages/EditProductPage/EditProductPage";
 
 
 function App() {
@@ -105,6 +106,14 @@ function App() {
             element={
               <SellerProtectedRoute>
                 <ShopAllProductsPage />
+              </SellerProtectedRoute>
+            }
+          />
+          <Route
+            path="/product/edit/:id"
+            element={
+              <SellerProtectedRoute>
+                <EditProductPage />
               </SellerProtectedRoute>
             }
           />

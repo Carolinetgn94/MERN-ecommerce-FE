@@ -2,21 +2,23 @@ import { useDispatch, useSelector } from "react-redux";
 import "./AllProducts.css";
 import { useEffect } from "react";
 import { deleteProduct, getAllProductsShop } from "../../redux/actions/product.action";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { DataGrid } from "@mui/x-data-grid";
 import { toast } from "react-toastify";
+import { CiEdit } from "react-icons/ci";
 
 function AllProducts() {
   const { products } = useSelector((state) => state.products);
   const { seller } = useSelector((state) => state.seller);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProductsShop(seller._id));
-  }, [dispatch]);
+  }, [dispatch, seller._id]);
 
   function handleDelete(id) {
     dispatch(deleteProduct(id));
@@ -24,6 +26,9 @@ function AllProducts() {
     window.location.reload();
   }
 
+  function handleEdit(id) {
+    navigate(`/product/edit/${id}`);
+  }
 
 
   const columns = [
@@ -56,6 +61,23 @@ function AllProducts() {
                 <AiOutlineEye size={20} />
               </Button>
             </Link>
+          </>
+        );
+      },
+    },
+    {
+      field: "Edit",
+      flex: 0.8,
+      minWidth: 100,
+      headerName: "",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Button onClick={() => handleEdit(params.id)}>
+              <CiEdit size={20} />
+            </Button>
           </>
         );
       },

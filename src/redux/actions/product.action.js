@@ -88,3 +88,44 @@ export const getAllProducts = () => async (dispatch) => {
     }
   };
 
+  export const getProductDetails = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: "getProductDetailsRequest" });
+  
+      const { data } = await axios.get(`${beServer}/product/get-product-details/${id}`);
+      dispatch({
+        type: "getProductDetailsSuccess",
+        payload: data.product,
+      });
+    } catch (error) {
+      dispatch({
+        type: "getProductDetailsFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+  export const editProduct = (id, updatedForm) => async (dispatch) => {
+    try {
+      dispatch({
+        type: "editProductRequest",
+      });
+      const config = { headers: { "Content-Type": "multipart/form-data" } };
+  
+      const { data } = await axios.put(
+        `${beServer}/product/edit-product/${id}`,
+        updatedForm,
+        config
+      );
+      dispatch({
+        type: "editProductSuccess",
+        payload: data.product,
+      });
+    } catch (error) {
+      dispatch({
+        type: "editProductFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
+  
