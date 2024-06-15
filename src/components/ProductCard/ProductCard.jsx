@@ -65,7 +65,7 @@ function ProductCard({ data }) {
 
       </div>
       <div className="productName">
-      <Link to={`/product/${data.name}`}>
+      <Link to={`/product/${data._id}`}>
         <h4>
           {data.name.length > 25 ? data.name.slice(0, 25) + "..." : data.name}
         </h4>
