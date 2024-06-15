@@ -2,7 +2,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FiPackage, FiShoppingBag } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
-import("./DashboardHeader.css");
+import "./DashboardHeader.css";
+import logo from "../../assets/Shopalooza-logo.png";
+
 
 function DashboardHeader() {
   const { seller } = useSelector((state) => state.seller);
@@ -10,10 +12,10 @@ function DashboardHeader() {
   return (
     <div className="dashboardHeader">
        
-       <div className="homepageLogo">
-        <Link to="/">
-          <h3>image logo</h3>
-        </Link>
+       <div className="dashboardLogo">
+       <Link to="/">
+          <img src={logo} alt="Shopalooza Logo" className="logo-image" />
+          </Link>
       </div>
       <div className="dashboardLogo">
         <Link to="/dashboard">
