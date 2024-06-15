@@ -61,7 +61,7 @@ function ProductCard({ data }) {
       </div>
       <div className="shopName">
        
-          <h5>{data.shop.name}</h5>
+          <h5>{data.shopId.name}</h5>
 
       </div>
       <div className="productName">

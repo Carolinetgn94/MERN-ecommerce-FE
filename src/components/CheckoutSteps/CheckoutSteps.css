@@ -1,53 +1,57 @@
 
-.checkout-steps-container {
-    width: 100%;
+
+   .checkout-steps-container {
     display: flex;
     justify-content: center;
+    margin: 20px 0;
   }
   
   .checkout-steps-wrapper {
-    width: 90%;
-    max-width: 800px;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
   }
   
   .checkout-step {
     display: flex;
     align-items: center;
+    position: relative;
   }
   
   .checkout-step-button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    background-color: #FDE1E6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
   }
   
   .checkout-step-text {
-    color: #f63b60;
-  }
-  
-  .checkout-step-line {
-    width: 30px;
-    max-width: 70px;
-    height: 4px;
-    background-color: #FDE1E6;
-  }
-  
-  .checkout-step-line.active {
-    background-color: #f63b60;
-  }
-  
-  .checkout-step-line.inactive {
-    background-color: #FDE1E6;
+    margin: 0;
   }
   
   .inactive-background {
-    background-color: #FDE1E6;
+    background-color: #cccccc;
   }
   
   .inactive-text {
-    color: #FDE1E6;
+    color: #666666;
   }
   
+  .checkout-step-line {
+    width: 100px;
+    height: 2px;
+    background-color: #007bff;
+    margin: 0 10px;
+  }
+  
+  .inactive {
+    background-color: #cccccc;
+  }

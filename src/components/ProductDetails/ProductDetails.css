@@ -59,17 +59,18 @@
   margin-right: 20px;
 }
 
-.shopAvatar {
-  width: 60px;
-  height: 60px;
+.popupShopAvatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  object-fit: contain;
-  margin-right: 10px;
+  object-fit: cover;
+  margin-top: 130px;
 }
 
 .popUpshopName {
   font-size: 1rem;
   font-weight: bold;
+  margin-top: 180px;
 }
 
 .popUpproductDescription {
@@ -80,17 +81,20 @@
 .popUpproductName {
   font-size: 0.8rem;
   font-weight: bold;
+  text-align: center;
 }
 
 .popUpproductSummary {
   margin-top: 10px;
   color: #555;
+  text-align: center;
 }
 
 .popUpproductPrice {
   margin-top: 20px;
   font-size: 1.3rem;
   color: #e60023;
+  text-align: center;
 }
 
 .minicartContainer {

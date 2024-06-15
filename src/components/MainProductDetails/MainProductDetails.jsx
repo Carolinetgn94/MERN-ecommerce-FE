@@ -82,17 +82,12 @@ function MainProductDetails({ data }) {
             <p>{data.description}</p>
           </div>
           <div className="productShopDetails">
-            {/* <img
-              className="shopAvatar"
-              src={data.shop.shop_avatar.url}
+            <img
+              className="mainShopAvatar"
+              src={data.shopId.avatar}
               alt=""
-            /> */}
-            <h5 className="shopName">{data.shop.name}</h5>
-            {/* <div >
-            <Link to="/" className="shopLink">
-                <button className="shopButton">Visit Shop</button>
-            </Link>
-            </div> */}
+            />
+            <h5 className="shopName">{data.shopId.name}</h5>
           </div>
           <div className="mainProductPrice">
             <h4>$ {data.price}</h4>

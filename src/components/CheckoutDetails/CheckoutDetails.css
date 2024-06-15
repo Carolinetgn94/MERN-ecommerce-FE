@@ -1,4 +1,4 @@
-/* Checkout Page */
+
 .checkout-container {
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@
     max-width: 1200px;
   }
   
-  /* Shipping Info */
+
   .shipping-info-container {
     width: 60%;
     background-color: #fff;
@@ -87,7 +87,7 @@
     margin-right: 10px;
   }
   
-  /* Cart Data */
+
   .cart-data-container {
     width: 155%;
     background-color: #fff;
@@ -138,11 +138,10 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    margin-top: 140px;
     transition: background-color 0.3s ease, transform 0.3s ease;
     padding-top: 18px;
     margin-top: 380px;
-    margin-left: -20px;
+    margin-left: -150px;
   }
   
   .checkout-button:hover {

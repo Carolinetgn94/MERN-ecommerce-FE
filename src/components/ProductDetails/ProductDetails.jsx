@@ -68,12 +68,12 @@ function ProductDetails({ setView, data }) {
               src={data.images[0]} 
               alt={data.name}
             />
-            {/* <img
-              className="shopAvatar"
-              src={data.shop.shop_avatar.url}
+            <img
+              className="popupShopAvatar"
+              src={data.shopId.avatar}
               alt=""
-            /> */}
-            <h5 className="popUpshopName">{data.shop.name}</h5>
+            />
+            <h5 className="popUpshopName">{data.shopId.name}</h5>
           </div>
           <div className="popUpproductDescription">
             <div className="popUpproductName">
@@ -85,6 +85,7 @@ function ProductDetails({ setView, data }) {
             <div className="popUpproductPrice">
               <h4>$ {data.price}</h4>
             </div>
+            
           </div>
           <div className="minicartContainer">
             <div className="cartSection">
