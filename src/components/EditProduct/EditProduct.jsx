@@ -96,7 +96,7 @@ function EditProduct() {
           onChange={(e) => setDescription(e.target.value)}
           fullWidth
           multiline
-          rows={4}
+          rows={15}
           margin="normal"
           placeholder="Enter your product description..."
         />
