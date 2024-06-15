@@ -24,13 +24,13 @@
     display: flex;
     align-items: center;
   }
-  
-  .header-logo h3 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-  }
+
+
+.logo-image {
+  max-height: 100px; 
+  width: auto;
+  margin-left: -80px;
+}
   
   .searchbox {
     position: relative;

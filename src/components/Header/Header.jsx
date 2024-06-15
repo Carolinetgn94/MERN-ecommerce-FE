@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import logo from "../../assets/Shopalooza-logo.png";
 
 function Header() {
   const { allProducts } = useSelector((state) => state.products);
@@ -47,7 +48,7 @@ function Header() {
       <div className="header-row">
         <div className="header-logo">
           <Link to="/">
-            <h3>image logo</h3>
+          <img src={logo} alt="Shopalooza Logo" className="logo-image" />
           </Link>
         </div>
         <div className="searchbox">

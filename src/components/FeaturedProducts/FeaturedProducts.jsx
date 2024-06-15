@@ -9,12 +9,8 @@ function FeaturedProduct() {
   const [data, setData] = useState([]);
   const { allProducts } = useSelector((state) => state.products);
 
-  const topProducts = allProducts ? allProducts.slice(0, 4) : [];
+  const topProducts = allProducts ? allProducts.slice(0, 8) : [];
 
-  // useEffect(() => {
-  //   const pData = allproducts;
-  //   setData(pData);
-  // }, []);
 
   return (
     <div className="featuredSection">

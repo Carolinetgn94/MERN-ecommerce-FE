@@ -1,0 +1,24 @@
+
+.SignUp-Page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+ 
+  .signup-logo-image {
+    max-height: 150px; 
+    width: auto;
+  }
+
+  
+  
+  @media (max-width: 768px) {
+    .signup-logo-image {
+      max-height: 100px;
+    }
+  }
+  
