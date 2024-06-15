@@ -76,25 +76,27 @@ function CartItemCard({ data, quantityChangeHandler, removeFromCartHandler }) {
 
   return (
     <div className="cartItemCard">
-      <div className="incrementButton" onClick={() => increment(data)}>
-        <HiPlus size={18} />
-      </div>
-      <span className="itemQty">{data.qty}</span>
-      <div className="decrementButton" onClick={() => decrement(data)}>
-        <HiOutlineMinus size={18} />
-      </div>
       <div className="cartProductImage">
         <img src={data.images[0]} alt={data.name} />
       </div>
       <div className="cartProductDetails">
-        <h1>{data.name}</h1>
+        <h4>{data.name}</h4>
         <h4 className="cartItemPrice">
           $ {data.price} * {value}{" "}
         </h4>
         <h4 className="cartTotalPrice">SGD{totalPrice}</h4>
       </div>
-      <div className="removeCartItem">
-        <button onClick={() => removeFromCartHandler(data)}>Remove</button>
+      <div className="cartButtons">
+        <div className="incrementButton" onClick={() => increment(data)}>
+          <HiPlus size={18} />
+        </div>
+        <span className="itemQty">{data.qty}</span>
+        <div className="decrementButton" onClick={() => decrement(data)}>
+          <HiOutlineMinus size={18} />
+        </div>
+        <div className="removeCartItem">
+          <button onClick={() => removeFromCartHandler(data)}>Remove</button>
+        </div>
       </div>
     </div>
   );

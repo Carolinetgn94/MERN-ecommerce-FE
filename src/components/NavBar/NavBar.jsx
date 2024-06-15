@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import React, { useState } from "react";
 import Cart from "../Cart/Cart";
 import WishList from "../WishList/WishList";
+import {categoriesData} from "../../seedData";
 
 function NavBar() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -20,9 +21,21 @@ function NavBar() {
         <Link to="/">
           <h3 className="home-link">Home</h3>
         </Link>
-        <Link to="/products">
-          <h3 className="products-link">Products</h3>
-        </Link>
+        <div className="dropdown">
+          <Link to="/products">
+            <h3 className="products-link">Products</h3>
+          </Link>
+          <div className="dropdown-content">
+            {categoriesData.map((category) => (
+              <Link to={`/products/${category.title}`} key={category.id}>
+                <div className="category-item">
+                  <img src={category.image_Url} alt={category.title} />
+                  <h4>{category.title}</h4>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
         <Link to="/faq">
           <h3 className="FAQ-link">FAQ</h3>
         </Link>

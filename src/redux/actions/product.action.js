@@ -129,3 +129,23 @@ export const getAllProducts = () => async (dispatch) => {
     }
   };
   
+  export const getAllCategories = () => async (dispatch) => {
+    try {
+      dispatch({ type: "getAllCategoriesRequest" });
+      const { data } = await axios.get(`${beServer}/category/get-all-categories`);
+      dispatch({ type: "getAllCategoriesSuccess", payload: data.categories });
+    } catch (error) {
+      dispatch({ type: "getAllCategoriesFail", payload: error.response.data.message });
+    }
+  };
+
+
+  export const getAllProductsByCategory = (category) => async (dispatch) => {
+    try {
+      dispatch({ type: "getAllProductsByCategoryRequest" });
+      const { data } = await axios.get(`${beServer}/product/get-all-products-by-category/${category}`);
+      dispatch({ type: "getAllProductsByCategorySuccess", payload: data.products });
+    } catch (error) {
+      dispatch({ type: "getAllProductsByCategoryFail", payload: error.response.data.message });
+    }
+  };

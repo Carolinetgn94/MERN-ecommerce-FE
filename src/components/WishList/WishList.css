@@ -1,41 +1,106 @@
-.addToCart {
-  margin-left: 50px;
-  display: inline-block;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out, background-color 0.2s ease-in-out;
-  padding: 10px;
-  border-radius: 5px;
+
+
+.cartContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-.addToCart:hover {
+
+.closeButton {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.closeButton svg {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.closeButton svg:hover {
   transform: scale(1.2);
 }
 
-.addToCart:hover svg {
-  color: #007bff;
+
+.cartItemsQty {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.removeItem {
+.cartItemsQty .cartIcon {
+  margin-right: 10px;
+}
+
+.wishlistItemCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.wishlistProductImage {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.wishlistProductImage img {
   width: 100%;
-  padding: 10px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.wishlistProductDetails {
+  margin-top: 20px;
+}
+
+.wishlistButtons {
+  display: flex;
+  align-items: center;
+}
+
+.addToCart.Wishlist {
+  margin-right: 10px; 
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.removeItem button {
+.addToCart.Wishlist:hover {
+  background-color: #0056b3;
+}
+
+.removeItem.Wishlist {
+  padding: 2px 16px;
   background-color: #e64848;
   color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 5%;
+  transition: background-color 0.3s;
 }
 
-.removeItem button:hover {
+.removeItem.Wishlist:hover {
   background-color: #cc0000;
 }

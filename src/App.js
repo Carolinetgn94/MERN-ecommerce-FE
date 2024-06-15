@@ -29,6 +29,7 @@ import SellerProtectedRoute from "./SellerProtectedRoute";
 import { getAllProducts } from "./redux/actions/product.action";
 import ShopSettingsPage from "./pages/ShopSettingsPage/ShopSettingsPage";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/products/:category" element={<CategoryPage />} /> 
           <Route path="/faq" element={<FAQPage />} />
           <Route
             path="/profile"

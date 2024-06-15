@@ -1,20 +1,18 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { productData } from "../../seedData";
 import "./ProductsPage.css";
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
+import { getAllProducts } from "../../redux/actions/product.action";
 
 
 function ProductsPage() {
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
     const { allProducts } = useSelector((state) => state.products);
 
-
-    // useEffect(() => {
-    //   const pData = productData;
-    //   setData(pData);
-    // }, []);
+    useEffect(() => {
+      dispatch(getAllProducts());
+    }, [dispatch]);
 
   return (
     <div className="productsPageContainer">

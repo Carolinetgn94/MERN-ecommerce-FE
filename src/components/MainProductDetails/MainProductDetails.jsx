@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {Link, useNavigate } from "react-router-dom";
 import "./MainProductDetails.css";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cart.action";
-import { addToWishlist, removeFromWishlist } from "../../redux/actions/wishlist.action";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/actions/wishlist.action";
 import { toast } from "react-toastify";
 
 function MainProductDetails({ data }) {
@@ -34,18 +36,16 @@ function MainProductDetails({ data }) {
   }
 
   function addToCartHandler(id) {
-    
     const isItemExists = cart && cart.find((i) => i._id === id);
 
     if (isItemExists) {
       toast.error("Item already in cart!");
     } else {
-      const cartData = {...data, qty: count};
+      const cartData = { ...data, qty: count };
       dispatch(addToCart(cartData));
-      toast.success("Item added to cart!")
+      toast.success("Item added to cart!");
     }
   }
-
 
   function removeFromWishlistHandler(data) {
     setClick(!click);
@@ -98,34 +98,36 @@ function MainProductDetails({ data }) {
             <h4>$ {data.price}</h4>
           </div>
           <div className="cartSection">
-              <button className="decrementBtn" onClick={decrementCount}>
-                -
-              </button>
-              <span>{count}</span>
-              <button className="incrementBtn" onClick={incrementCount}>
-                +
-              </button>
-            </div>
-            <div className="favIcon">
-              {click ? (
-                <AiFillHeart
-                  size={28}
-                  onClick={() => removeFromWishlistHandler(data)}
-                  color={click ? "red" : "#333"}
-                  title="Remove from wishlist"
-                />
-              ) : (
-                <AiOutlineHeart
-                  size={28}
-                  onClick={() => addToWishlistHandler(data)}
-                  color={click ? "red" : "#333"}
-                  title="Add to wishlist"
-                />
-              )}
-            </div>
-            <div className="cartButton">
-              <button onClick={() => addToCartHandler(data._id)}>Add To Cart</button>
-            </div>
+            <button className="decrementBtn" onClick={decrementCount}>
+              -
+            </button>
+            <span>{count}</span>
+            <button className="incrementBtn" onClick={incrementCount}>
+              +
+            </button>
+          </div>
+          <div className="favIcon">
+            {click ? (
+              <AiFillHeart
+                size={28}
+                onClick={() => removeFromWishlistHandler(data)}
+                color={click ? "red" : "#333"}
+                title="Remove from wishlist"
+              />
+            ) : (
+              <AiOutlineHeart
+                size={28}
+                onClick={() => addToWishlistHandler(data)}
+                color={click ? "red" : "#333"}
+                title="Add to wishlist"
+              />
+            )}
+          </div>
+          <div className="cartButton">
+            <button onClick={() => addToCartHandler(data._id)}>
+              Add To Cart
+            </button>
+          </div>
         </div>
       ) : null}
     </div>
