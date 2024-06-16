@@ -1,0 +1,108 @@
+.paymentPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .headerSection {
+    width: 100%;
+  }
+  
+  .paymentSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px;
+  }
+  
+  .paymentDetails {
+    margin-top: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+  }
+  
+  .paymentDetails h3 {
+    text-align: left;
+  }
+  
+  .paymentMode {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .paymentOption {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cartItemsContainer {
+    width: 150%;
+  }
+  
+  .cartItems {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .cartItem {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap:30px;
+  }
+  
+  .cartItem img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+  }
+  
+  .totalPrice {
+    margin-top: 20px;
+  }
+  
+  .confirmOrderButton {
+    width: 150px;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding-top: 10px;
+    margin-top: 20px;
+  }
+  
+  .confirmOrderButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .confirmOrderButton button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+  

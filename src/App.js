@@ -30,6 +30,8 @@ import { getAllProducts } from "./redux/actions/product.action";
 import ShopSettingsPage from "./pages/ShopSettingsPage/ShopSettingsPage";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
+import OrderSuccessPage from "./pages/OrderSuccessPage/OrderSuccessPage";
 
 
 function App() {
@@ -65,6 +67,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <CheckoutPage />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <PaymentPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order-success"
+            element={
+              <ProtectedRoute>
+                <OrderSuccessPage />
               </ProtectedRoute>
             }
           />

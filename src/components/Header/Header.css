@@ -49,6 +49,10 @@
     width: 300px;
   }
   
+.searchedItem img {
+  object-fit: contain;
+}
+
   .seller {
     display: flex;
     align-items: center;

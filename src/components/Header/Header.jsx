@@ -68,7 +68,7 @@ function Header() {
                   return (
                     <Link to={`/product/${i.name}`}>
                       <div className="searchedItem">
-                        <img src={``} alt="" />
+                        <img src={i.images[0]} alt="" />
                         <h1>{truncateText(i.name, 35)}</h1>
                       </div>
                     </Link>
