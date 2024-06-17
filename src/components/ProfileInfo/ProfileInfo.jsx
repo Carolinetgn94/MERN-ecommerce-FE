@@ -160,7 +160,6 @@ function MyOrders() {
         .get(`${beServer}/order/user-orders`, { withCredentials: true })
         .then((response) => {
           setOrders(response.data.orders);
-          console.log("setOrders:", setOrders(response.data.orders));
         })
         .catch((error) => {
           toast.error(error.response?.data?.message || "Failed to fetch orders");

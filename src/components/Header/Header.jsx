@@ -66,7 +66,7 @@ function Header() {
               {searchData &&
                 searchData.map((i, index) => {
                   return (
-                    <Link to={`/product/${i.name}`}>
+                    <Link to={`/product/${i._id}`}>
                       <div className="searchedItem">
                         <img src={i.images[0]} alt="" />
                         <h1>{truncateText(i.name, 35)}</h1>
