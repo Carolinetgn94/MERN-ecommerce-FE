@@ -15,8 +15,7 @@ import { RxCross1 } from "react-icons/rx";
 import { Country } from "country-state-city";
 
 function ProfileInfo({ active }) {
-  const { user, error, successMessage } =
-    useSelector((state) => state.user);
+  const { user, error, successMessage } = useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
@@ -42,31 +41,25 @@ function ProfileInfo({ active }) {
   }
 
   async function handleImage(e) {
-
     const file = e.target.files[0];
     const formData = new FormData();
-    formData.append('avatar', file);
-  
+    formData.append("avatar", file);
 
-  axios
-    .put(
-      `${beServer}/user/update-avatar`,
-      formData,
-      {
+    axios
+      .put(`${beServer}/user/update-avatar`, formData, {
         headers: {
-          'Content-Type': 'ultipart/form-data',
+          "Content-Type": "ultipart/form-data",
         },
         withCredentials: true,
-      }
-    )
-    .then((response) => {
-      dispatch(loadUser());
-      toast.success("avatar updated successfully!");
-    })
-    .catch((error) => {
-      toast.error(error);
-    });
-}
+      })
+      .then((response) => {
+        dispatch(loadUser());
+        toast.success("avatar updated successfully!");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  }
 
   return (
     <div className="contentContainer">
@@ -135,7 +128,7 @@ function ProfileInfo({ active }) {
           <Address />
         </div>
       )}
-       {active === 4 && (
+      {active === 4 && (
         <div>
           <ChangePassword />
         </div>
@@ -149,7 +142,6 @@ function ProfileInfo({ active }) {
   );
 }
 
-
 function MyOrders() {
   const { user } = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);
@@ -162,7 +154,9 @@ function MyOrders() {
           setOrders(response.data.orders);
         })
         .catch((error) => {
-          toast.error(error.response?.data?.message || "Failed to fetch orders");
+          toast.error(
+            error.response?.data?.message || "Failed to fetch orders"
+          );
         });
     }
   }, [user]);
@@ -195,7 +189,6 @@ function MyOrders() {
     </div>
   );
 }
-
 
 function Address() {
   const [open, setOpen] = useState(false);
@@ -385,16 +378,13 @@ function Address() {
               </div>
             </div>
           ))}
-          {user && user.addresses.length === 0 && (
-        <h5>
-          You have no saved address!
-        </h5>
-      )}
+        {user && user.addresses.length === 0 && (
+          <h5>You have no saved address!</h5>
+        )}
       </div>
     </div>
   );
 }
-
 
 function ChangePassword() {
   const [oldPassword, setOldPassword] = useState("");
@@ -415,12 +405,13 @@ function ChangePassword() {
       setNewPassword("");
       setConfirmPassword("");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Old Password is wrong";
+      const errorMessage =
+        error.response?.data?.message || "Old Password is wrong";
       toast.error(errorMessage);
     }
   }
 
-  return(
+  return (
     <div className="changePwSection">
       <div className="changePwHeader">
         <h1>Change Password</h1>
@@ -429,36 +420,35 @@ function ChangePassword() {
         <form onSubmit={passwordChangeHandler}>
           <div className="updatePwField">
             <label>Enter your old password</label>
-            <input 
-             type="password"
-             value={oldPassword}
-             onChange={(e) => setOldPassword(e.target.value)}
+            <input
+              type="password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
             />
           </div>
           <div className="updatePwField">
             <label>Enter your new password</label>
-            <input 
-             type="password"
-             value={newPassword}
-             onChange={(e) => setNewPassword(e.target.value)}
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
           <div className="updatePwField">
             <label>Confirm your new password</label>
-            <input 
-             type="password"
-             value={confirmPassword}
-             onChange={(e) => setConfirmPassword(e.target.value)}
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
           <div className="updatePwButton">
             <button type="submit">Update</button>
           </div>
-
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProfileInfo;
