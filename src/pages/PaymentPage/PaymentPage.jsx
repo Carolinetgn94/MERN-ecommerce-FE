@@ -1,18 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../../components/CheckoutSteps/CheckoutSteps";
 import Header from "../../components/Header/Header";
 import "./PaymentPage.css";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { beServer } from "../../server";
+import { toast } from "react-toastify";
 
 function PaymentPage() {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+  const [orderData, setOrderData] = useState([]);
+  const { user } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
 
-  const confirmOrder = () => {
-    // Logic to save order details and navigate to the success page
-    navigate("/order-success");
+  useEffect(() => {
+    const storedOrderData = JSON.parse(localStorage.getItem("latestOrder"));
+    setOrderData(storedOrderData);
+  }, []);
+
+      const order = {
+        cart: orderData?.cart,
+        shippingAddress: orderData?.shippingAddress,
+        user: user,
+        totalPrice: orderData?.totalPrice,
+      };
+
+
+  async function confirmOrder(e) {
+    e.preventDefault();
+    const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      };
+  
+      order.paymentInfo = {
+        type: "Cash On Delivery",
+      };
+  
+      try {
+        const response = await axios.post(`${beServer}/order/create-order`, order, config);
+        console.log('Order created:', response.data);
+  
+        toast.success("Order successful!");
+        localStorage.setItem("cartItems", JSON.stringify([]));
+        localStorage.setItem("latestOrder", JSON.stringify([]));
+        navigate("/order-success");
+        // window.location.reload();
+      } catch (error) {
+        console.error('Error creating order:', error.response.data.message);
+        toast.error("Error creating order. Please try again.");
+      }
   };
 
   const subTotalPrice = cart.reduce(
