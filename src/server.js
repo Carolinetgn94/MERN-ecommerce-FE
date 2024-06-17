@@ -1,1 +1,4 @@
-export const beServer = "http://localhost:4000/api"; 
+export const beServer = "https://be-mern-ecommerce.onrender.com"
+
+// "http://localhost:4000/api"; 
+// "https://be-mern-ecommerce.onrender.com"
