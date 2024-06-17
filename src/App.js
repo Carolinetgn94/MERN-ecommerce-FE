@@ -32,6 +32,8 @@ import EditProductPage from "./pages/EditProductPage/EditProductPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage/OrderSuccessPage";
+import AllShopOrders from "./components/AllShopOrders/AllShopOrders";
+import ShopAllOrdersPage from "./pages/ShopAllOrdersPage/ShopAllOrdersPage";
 
 
 function App() {
@@ -110,6 +112,14 @@ function App() {
             element={
               <SellerProtectedRoute>
                 <ShopDashboardPage />
+              </SellerProtectedRoute>
+            }
+          />
+             <Route
+            path="/dashboard-orders"
+            element={
+              <SellerProtectedRoute>
+                <ShopAllOrdersPage />
               </SellerProtectedRoute>
             }
           />

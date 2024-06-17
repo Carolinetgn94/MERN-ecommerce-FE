@@ -7,7 +7,7 @@ import { CiSettings } from "react-icons/ci";
 function DashboardSideBar({active}) {
   return (
     <div className="dashboardContainer">
-      {/* <div className="allOrders">
+      <div className="allOrders">
         <Link to="/dashboard-orders">
           <FiShoppingBag
             size={30}
@@ -15,7 +15,7 @@ function DashboardSideBar({active}) {
           />
           <h5>All Orders</h5>
         </Link>
-      </div> */}
+      </div>
       <div className="allProducts">
         <Link to="/dashboard-products">
           <FiPackage size={30} color={`${active === 2 ? "crimson" : "#555"}`} />
