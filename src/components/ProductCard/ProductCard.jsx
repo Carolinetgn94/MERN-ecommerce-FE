@@ -54,7 +54,7 @@ function ProductCard({ data }) {
 
   return (
     <div className="productCardContainer">
-      <div className="productImage">
+      <div className="productCardImage">
         <Link to={`/product/${data._id}`}> 
           <img src={data.images[0]} alt={data.name} />
         </Link>

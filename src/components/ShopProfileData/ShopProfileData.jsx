@@ -22,10 +22,7 @@ function ShopProfileData({ isOwner }) {
   return (
     <div className="ShopProfileContainer">
       <div className="shopProfileHeader">
-
-          {/* <h2 className="shopProductsButton">My Shop Products</h2> */}
-  
-      
+        
         {isOwner && (
           <div className="goDashboard">
             <Link to="/dashboard">

@@ -14,20 +14,20 @@
   color: inherit; 
   }
 
-.productImage {
+.productCardImage {
   width: 100%;
   height: 150px;
   overflow: hidden;
 }
 
-.productImage img {
+.productCardImage img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease-in-out;
 }
 
-.productImage:hover img {
+.productCardImage:hover img {
   transform: scale(1.1);
 }
 
