@@ -68,7 +68,7 @@ function SignUp() {
 
   return (
     <div className="UserSignUp-Page">
-      <div className="SignUp-Container">
+      <div className="UserSignUp-Container">
         <h2 className="SignUp-Title">Register A Free Account</h2>
         <form className="SignUp-Form" onSubmit={handleSubmit}>
           <div name-input>
