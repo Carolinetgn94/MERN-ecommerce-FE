@@ -7,6 +7,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import axios from "axios";
 import { beServer } from "../../server";
 import { toast } from "react-toastify";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 
 function ProfileMenu({ setActive, active }) {
   const navigate = useNavigate();
@@ -26,6 +27,10 @@ function ProfileMenu({ setActive, active }) {
       <div className="profileIcon" onClick={() => setActive(1)}>
         <RxPerson size={20} color={active === 1 ? "red" : ""} />
         <span>Profile</span>
+      </div>
+      <div className="ordersIcon" onClick={() => setActive(5)}>
+        <HiOutlineShoppingBag size={20} color={active === 5 ? "red" : ""} />
+        <span>My Orders</span>
       </div>
       <div className="addressIcon" onClick={() => setActive(2)}>
         <TbAddressBook size={20} color={active === 2 ? "red" : ""} />

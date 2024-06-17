@@ -27,6 +27,8 @@ function PaymentPage() {
         totalPrice: orderData?.totalPrice,
       };
 
+      console.log("order:", order);
+
 
   async function confirmOrder(e) {
     e.preventDefault();
@@ -40,7 +42,7 @@ function PaymentPage() {
       order.paymentInfo = {
         type: "Cash On Delivery",
       };
-  
+
       try {
         const response = await axios.post(`${beServer}/order/create-order`, order, config);
         console.log('Order created:', response.data);
@@ -49,7 +51,8 @@ function PaymentPage() {
         localStorage.setItem("cartItems", JSON.stringify([]));
         localStorage.setItem("latestOrder", JSON.stringify([]));
         navigate("/order-success");
-        // window.location.reload();
+        window.location.reload();
+
       } catch (error) {
         console.error('Error creating order:', error.response.data.message);
         toast.error("Error creating order. Please try again.");

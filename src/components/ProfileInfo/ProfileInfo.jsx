@@ -140,9 +140,63 @@ function ProfileInfo({ active }) {
           <ChangePassword />
         </div>
       )}
+      {active === 5 && (
+        <div>
+          <MyOrders />
+        </div>
+      )}
     </div>
   );
 }
+
+
+function MyOrders() {
+  const { user } = useSelector((state) => state.user);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${beServer}/order/user-orders`, { withCredentials: true })
+        .then((response) => {
+          setOrders(response.data.orders);
+          console.log("setOrders:", setOrders(response.data.orders));
+        })
+        .catch((error) => {
+          toast.error(error.response?.data?.message || "Failed to fetch orders");
+        });
+    }
+  }, [user]);
+
+  return (
+    <div className="myOrdersContainer">
+      <h1>My Orders</h1>
+      <div className="orderList">
+        {orders.length > 0 ? (
+          orders.map((order) => (
+            <div className="orderItem" key={order._id}>
+              <h3>Order ID: {order._id}</h3>
+              <p>Total Price: ${order.totalPrice}</p>
+              <div className="productsList">
+                <h4>Products:</h4>
+                <ul>
+                  {order.products.map((product) => (
+                    <li key={product._id}>
+                      {product.name} - Quantity: {product.quantity}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No orders found.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 
 function Address() {
   const [open, setOpen] = useState(false);
@@ -347,7 +401,6 @@ function ChangePassword() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
 
   async function passwordChangeHandler(e) {
     e.preventDefault();
