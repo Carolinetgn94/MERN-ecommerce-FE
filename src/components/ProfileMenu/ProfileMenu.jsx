@@ -12,14 +12,20 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 function ProfileMenu({ setActive, active }) {
   const navigate = useNavigate();
 
-  function logoutHandler() {
-    axios.get(`${beServer}/user/logout`, {withCredentials: true}).then((res) => {
-        toast.success(res.data.message);
-        window.location.reload(true);
-        navigate("/login");
-    }).catch((error) => {
-        console.log(error.response.data.message);
-    })
+  async function logoutHandler() {
+    try {
+      const response = await axios.get(`${beServer}/user/logout`, {
+        withCredentials: true, 
+      });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate("/login", { replace: true });
+      } else {
+        toast.error("Logout failed");
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || "Logout failed");
+    }
   }
 
   return (
