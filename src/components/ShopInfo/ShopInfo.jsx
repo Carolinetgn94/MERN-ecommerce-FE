@@ -20,15 +20,20 @@ function ShopInfo({ isOwner }) {
   }, []);
 
   async function logoutHandler() {
-    axios
-      .get(`${beServer}/shop/logout`, {
+    try {
+      const response = await axios.get(`${beServer}/shop/logout`, {
         withCredentials: true,
-      })
-      .then((res) => {
-        toast.success(res.data.message);
-        window.location.reload(true);
-        navigate("/shop-login");
       });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate("/shop-login", { replace: true }); 
+        window.location.reload(); 
+      } else {
+        toast.error("Logout failed");
+      }
+    } catch (err) {
+      toast.error("Logout failed");
+    }
   }
 
   return (

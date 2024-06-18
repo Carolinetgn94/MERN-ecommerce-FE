@@ -19,6 +19,7 @@ function ProfileMenu({ setActive, active }) {
       });
       if (response.data.success) {
         toast.success(response.data.message);
+        window.location.reload()
         navigate("/login", { replace: true });
       } else {
         toast.error("Logout failed");
