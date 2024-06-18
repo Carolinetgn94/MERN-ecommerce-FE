@@ -39,6 +39,10 @@ import ShopAllOrdersPage from "./pages/ShopAllOrdersPage/ShopAllOrdersPage";
 function App() {
 
   useEffect(() => {
+    document.cookie = "cross-site-cookie=test; SameSite=None; Secure";
+  }, []);
+
+  useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
     Store.dispatch(getAllProducts());
