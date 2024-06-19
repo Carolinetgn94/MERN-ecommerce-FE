@@ -21,9 +21,10 @@ function AllProducts() {
   }, [dispatch, seller._id]);
 
   function handleDelete(id) {
-    dispatch(deleteProduct(id));
-    toast.success("Product deleted!")
-    window.location.reload();
+    dispatch(deleteProduct(id)).then(() => {
+      toast.success("Product deleted!");
+      dispatch(getAllProductsShop(seller._id)); 
+    });
   }
 
   function handleEdit(id) {
@@ -75,7 +76,7 @@ function AllProducts() {
       renderCell: (params) => {
         return (
           <>
-            <Button onClick={() => handleEdit(params.id)}>
+            <Button onClick={() => handleEdit(params.row.id)}>
               <CiEdit size={20} />
             </Button>
           </>
