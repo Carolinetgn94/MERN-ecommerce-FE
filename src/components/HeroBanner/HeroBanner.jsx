@@ -5,7 +5,7 @@ import banner1 from "../../assets/Banner1.png";
 function HeroBanner() {
   return (
     <div className="banner1">
-      <Link to="/products">
+      <Link to="/create-shop">
         <img src={banner1}></img>
       </Link>
     </div>
