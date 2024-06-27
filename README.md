@@ -14,6 +14,8 @@ Welcome to **Shopalooza**, an e-commerce marketplace where users can buy product
 
 ![Alt Text](src/assets/shopalooza-preview.png)
 
+Visit Shopazoola here:
+https://fe-mern-ecommerce.vercel.app/
 
 ## Technologies Used
 
